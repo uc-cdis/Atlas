@@ -1,6 +1,6 @@
 define([
 	'knockout',
-	'pages/characterizations/services/FeatureAnalysisService',
+	'characterizations-pages/services/FeatureAnalysisService',
 	'text!./feature-analyses-browser.html',
 	'appConfig',
 	'services/AuthAPI',
@@ -10,7 +10,7 @@ define([
 	'utils/DatatableUtils',
 	'utils/Renderers',
 	'./const',
-	'pages/characterizations/const',
+	'characterizations-pages/const',
 	'../tabbed-grid',
 	'less!./feature-analyses-browser.less',
 ], function (

@@ -1,4 +1,4 @@
-define(['knockout', 'text!./forbidden.html', 'appConfig'], function (ko, view, appConfig) {
+define(['knockout', 'text!./ac-forbidden.html', 'appConfig'], function (ko, view, appConfig) {
     function forbidden(params) {
         var self = this;
     }

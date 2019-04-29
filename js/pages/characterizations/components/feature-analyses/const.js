@@ -1,6 +1,6 @@
 define((require, exports) => {
 
-	const constants = require('pages/characterizations/const');
+	const constants = require('characterizations-pages/const');
 	const datatableUtils = require('utils/DatatableUtils');
 
 	const FeatureAnalysisFacets = [

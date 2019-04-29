@@ -1,4 +1,4 @@
-define(['knockout', 'jqueryui/jquery.ddslick'], function (ko) {
+define(['knockout', 'assets/jqueryui/jquery.ddslick'], function (ko) {
 
 	function ddSlickInit(element, valueAccessor, allBindingsAccessor, viewModel, bindingContext) {
 		var options = valueAccessor() || {};

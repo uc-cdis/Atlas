@@ -3,8 +3,8 @@ define([
 	'text!./ac-access-denied.html',
 	'components/Component',
 	'utils/CommonUtils',
-	'forbidden',
-	'unauthenticated',
+	'components/ac-forbidden',
+	'components/ac-unauthenticated',
 	'less!./ac-access-denied.less'
 ], function (
 	ko,

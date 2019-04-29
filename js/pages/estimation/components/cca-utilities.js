@@ -13,8 +13,8 @@ define([
 	'services/analysis/Cohort',
 	'../inputTypes/TargetComparatorOutcome',
 	'faceted-datatable',
-	'utilities/import',
-	'utilities/export',
+	'components/utilities/import',
+	'components/utilities/export',
 ], function (
 	ko, 
 	view, 

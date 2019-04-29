@@ -1,7 +1,7 @@
 define([
     'knockout',
-    'pages/characterizations/services/CharacterizationService',
-    'pages/characterizations/services/PermissionService',
+    'characterizations-pages/services/CharacterizationService',
+    'characterizations-pages/services/PermissionService',
     'components/cohortbuilder/CriteriaGroup',
     'conceptsetbuilder/InputTypes/ConceptSet',
     './CharacterizationAnalysis',

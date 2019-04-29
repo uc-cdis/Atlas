@@ -3,7 +3,7 @@ define([
 	'text!./white-page.html',
 	'components/Component',
 	'utils/CommonUtils',
-	'unauthenticated',
+	'components/ac-unauthenticated',
 	'less!./white-page.less',
 ], function (
 	ko,

@@ -2,7 +2,7 @@ define([
 	'jquery',
 	'knockout',
 	'text!./MappedConcepts.html',
-	'services/VocabularyProvider',
+	'services/Vocabulary',
 	'utils/CommonUtils',
 	'faceted-datatable'
 ], function (

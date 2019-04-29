@@ -1,19 +1,17 @@
 define([
     'knockout',
-    'atlas-state',
     'text!./tabbed-grid.html',
     'appConfig',
     'services/AuthAPI',
     'components/Component',
     'utils/CommonUtils',
-    'pages/characterizations/const',
+    '../const',
     'databindings',
     'less!./tabbed-grid.less',
     'components/heading',
     'faceted-datatable'
 ], function (
     ko,
-    sharedState,
     view,
     config,
     authApi,

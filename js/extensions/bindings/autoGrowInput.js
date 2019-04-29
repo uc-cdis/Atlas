@@ -1,4 +1,4 @@
-define(['knockout', 'jqueryui/autoGrowInput'], function (ko) {
+define(['knockout', 'assets/jqueryui/autoGrowInput'], function (ko) {
 	ko.bindingHandlers.autoGrowInput = {
 		init: function (element, valueAccessor, allBindings, viewModel, bindingContext) {
 			var value = valueAccessor();

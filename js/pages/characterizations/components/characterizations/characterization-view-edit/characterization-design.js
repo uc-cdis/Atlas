@@ -1,7 +1,7 @@
 define([
     'knockout',
     'atlas-state',
-    'pages/characterizations/services/PermissionService',
+    'characterizations-pages/services/PermissionService',
     'text!./characterization-design.html',
     'appConfig',
     'services/AuthAPI',
@@ -13,7 +13,7 @@ define([
     'services/Vocabulary',
     'lodash',
     '../../../utils',
-    'pages/characterizations/components/feature-analyses/feature-analyses-browser',
+    'characterizations-pages/components/feature-analyses/feature-analyses-browser',
     './characterization-params-create-modal',
     'components/cohort/linked-cohort-list',
     'components/linked-entity-list',

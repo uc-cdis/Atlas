@@ -7,7 +7,7 @@ define([
     'components/Component',
     'utils/CommonUtils',
     'utils/DatatableUtils',
-    'pages/characterizations/const',
+    'characterizations-pages/const',
     'less!./characterization-params-create-modal.less',
 ], function (
     ko,

@@ -1,7 +1,7 @@
 define(['knockout',
 				'jquery',
 				'text!./FeasibilityIntersectReport.html',
-				'databindings/cohortbuilder/populationTreemapBinding',
+				'../bindings/populationTreemapBinding',
 				'databindings/eventListenerBinding',
 			  'css!../css/report.css'
 			 ], function (

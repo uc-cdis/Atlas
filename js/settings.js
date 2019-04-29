@@ -51,10 +51,6 @@ const settingsObject = {
 			main: "URI"
 		},
 		{
-			name: "utilities",
-			location: "components/utilities",
-		},
-		{
 			name: "facets",
 			location: "../node_modules/facets",
 			main: "facets"
@@ -85,13 +81,11 @@ const settingsObject = {
 	},
 	map: {
 		"*": {
-			'jqueryui/jquery.ddslick': 'assets/jqueryui/jquery.ddslick',
-			'jqueryui/autoGrowInput': 'assets/jqueryui/autoGrowInput',
 			'd3-color': 'd3',
 			'd3-interpolate': 'd3',
 			'd3-selection': 'd3',
 			'd3-collection': 'd3',
-			'services/VocabularyProvider': 'services/Vocabulary'
+			"characterizations-pages": "pages/characterizations"
 		}
 	},
 	paths: {
@@ -103,7 +97,7 @@ const settingsObject = {
 		"optional": "extensions/plugins/optional",
 		"clipboard": "../node_modules/clipboard/dist/clipboard",
 		"knockout": "../node_modules/knockout/build/output/knockout-latest",
-		"ko.sortable": "../node_modules/knockout-sortable/src/knockout-sortable",
+		"knockout-sortable": "../node_modules/knockout-sortable/src/knockout-sortable",
 		"knockout-mapping": "../node_modules/knockout-mapping/dist/knockout.mapping",
 		"datatables": "../node_modules/datatables/media/js/jquery.dataTables",
 		"datatables.net": "../node_modules/datatables.net/js/jquery.dataTables",
@@ -151,7 +145,7 @@ const settingsObject = {
 		"atlas.css": "css!styles/atlas.css",
 		"chart.css": "css!styles/chart.css",
 		"achilles.css": "css!styles/achilles.css",
-		"bootstrap-select.min.css": "css!https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/css/bootstrap-select.min.css",
+		"bootstrap-select.min.css": "css!../node_modules/bootstrap-select/dist/css/bootstrap-select.min.css",
 		"buttons.css": "css!styles/buttons.css",
 		"cartoon.css": "css!styles/cartoon.css",
 		"d3.slider.css": "css!styles/d3.slider.css",
@@ -171,8 +165,6 @@ const settingsObject = {
 		"r-manager": "components/r-manager",
 		"home": "components/home",
 		"welcome": "components/welcome",
-		"forbidden": "components/ac-forbidden",
-		"unauthenticated": "components/ac-unauthenticated",
 		"roles": "components/roles",
 		"role-details": "components/role-details",
 		"loading": "components/loading",

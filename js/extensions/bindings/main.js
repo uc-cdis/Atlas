@@ -21,4 +21,6 @@ define(function (require) {
 	var numericExtender = require('./numericExtender');
 	var childChangesExtender = require('./childChangesExtender');
 	var alphaNumericExtender = require('./alphaNumericExtender');
+	const multiSelect = require('./multiSelect');
+	const autoGrowInput = require('./autoGrowInput');
 });

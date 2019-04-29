@@ -15,7 +15,7 @@ require(["./settings"], (settings) => {
 	});	
 	require([
 		'bootstrap',
-		'ko.sortable',
+		'knockout-sortable',
 		...Object.values(settings.cssPaths),
 	], function () { // bootstrap must come first
     $.fn.bstooltip = $.fn.tooltip;

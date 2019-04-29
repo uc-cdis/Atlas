@@ -1,6 +1,7 @@
-define(['knockout', 'text!./unauthenticated.html', 'appConfig'], function (ko, view, appConfig) {
+define(['knockout', 'text!./ac-unauthenticated.html', 'services/AuthAPI'], function (ko, view, authAPI) {
     function unauthenticated(params) {
         var self = this;
+        self.signInOpened = authAPI.signInOpened;
     }
 
     var component = {

@@ -1,8 +1,8 @@
 define([
 	'knockout',
-	'pages/characterizations/services/CharacterizationService',
-	'pages/characterizations/services/PermissionService',
-	'pages/characterizations/const',
+	'characterizations-pages/services/CharacterizationService',
+	'characterizations-pages/services/PermissionService',
+	'characterizations-pages/const',
 	'text!./characterization-executions.html',
 	'appConfig',
 	'services/AuthAPI',
@@ -18,7 +18,7 @@ define([
 	'services/Poll',
 	'less!./characterization-executions.less',
 	'./characterization-results',
-	'databindings/tooltipBinding',
+	'databindings',
 	'components/modal-exit-message',
 ], function(
 	ko,

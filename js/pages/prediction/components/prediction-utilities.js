@@ -11,8 +11,8 @@ define([
 	'../inputTypes/TargetOutcome',
 	'../inputTypes/ModelCovarPopTuple',
 	'../inputTypes/FullAnalysis',
-	'utilities/import',
-	'utilities/export',
+	'components/utilities/import',
+	'components/utilities/export',
 ], function (
 	ko, 
 	view, 
