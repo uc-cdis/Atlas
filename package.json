@@ -74,7 +74,7 @@
     "jquery-ui.autocomplete.scroll": "^0.1.9",
     "js-cookie": "^2.2.0",
     "jszip": "^3.5.0",
-    "knockout": "3.4.2",
+    "knockout": "3.5.0",
     "knockout-mapping": "^2.6.0",
     "knockout-sortable": "^1.1.0",
     "leaflet": "^1.6.0",
