@@ -41,6 +41,9 @@ LABEL org.opencontainers.image.source="https://github.com/OHDSI/Atlas"
 ENV WEBAPI_URL=http://localhost:8080/WebAPI/
 
 # Configure webserver
+COPY ./docker/default.conf /etc/nginx/conf.d/default.conf
+COPY ./docker/webapi.conf /etc/nginx/conf.d/webapi.conf
+
 COPY ./docker/optimization.conf /etc/nginx/conf.d/optimization.conf
 COPY ./docker/30-atlas-env-subst.sh /docker-entrypoint.d/30-atlas-env-subst.sh
 
