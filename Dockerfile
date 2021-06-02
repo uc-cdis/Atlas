@@ -1,5 +1,5 @@
 # Build the source
-FROM node:12-alpine as builder
+FROM quay.io/cdis/node:12-alpine as builder
 
 WORKDIR /code
 
