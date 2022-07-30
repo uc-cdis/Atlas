@@ -1,5 +1,5 @@
 # Build the source
-FROM docker.io/library/node:18.14.1-alpine@sha256:045b1a1c90bdfd8fcaad0769922aa16c401e31867d8bf5833365b0874884bbae as builder
+FROM quay.io/cdis/node:14-alpine as builder
 
 WORKDIR /code
 
@@ -26,7 +26,7 @@ RUN find . -type f "(" \
       | xargs -0 -n 1 gzip -kf
 
 # Production Nginx image
-FROM docker.io/nginxinc/nginx-unprivileged:1.27.2-alpine
+FROM quay.io/cdis/nginx-unprivileged:1.20-alpine
 
 LABEL org.opencontainers.image.title="OHDSI-Atlas"
 LABEL org.opencontainers.image.authors="Joris Borgdorff <joris@thehyve.nl>, Lee Evans - www.ltscomputingllc.com, Shaun Turner<shaun.turner1@nhs.net>"
