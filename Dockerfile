@@ -1,5 +1,5 @@
 # Build the source
-FROM node:14-alpine as builder
+FROM quay.io/cdis/node:14-alpine as builder
 
 WORKDIR /code
 
@@ -26,7 +26,7 @@ RUN find . -type f "(" \
       | xargs -0 -n 1 gzip -kf
 
 # Production Nginx image
-FROM nginxinc/nginx-unprivileged:1.23.0-alpine
+FROM quay.io/cdis/nginx-unprivileged:1.20-alpine
 
 LABEL org.opencontainers.image.title="OHDSI-Atlas"
 LABEL org.opencontainers.image.authors="Joris Borgdorff <joris@thehyve.nl>, Lee Evans - www.ltscomputingllc.com"
@@ -37,13 +37,13 @@ LABEL org.opencontainers.image.vendor="OHDSI"
 LABEL org.opencontainers.image.source="https://github.com/OHDSI/Atlas"
 
 # URL where WebAPI can be queried by the client
-ENV WEBAPI_URL=http://localhost:8080/WebAPI/ \
-  CONFIG_PATH=/etc/atlas/config-local.js
+# ENV WEBAPI_URL=http://localhost:8080/WebAPI/ \
+#   CONFIG_PATH=/etc/atlas/config-local.js
 
 # Configure webserver
 COPY ./docker/nginx-default.conf /etc/nginx/conf.d/default.conf
 COPY ./docker/optimization.conf /etc/nginx/conf.d/optimization.conf
-COPY ./docker/30-atlas-env-subst.sh /docker-entrypoint.d/30-atlas-env-subst.sh
+# COPY ./docker/30-atlas-env-subst.sh /docker-entrypoint.d/30-atlas-env-subst.sh
 
 # Load code
 COPY ./images /usr/share/nginx/html/atlas/images
@@ -54,4 +54,4 @@ COPY --from=builder /code/js /usr/share/nginx/html/atlas/js
 
 # Load Atlas local config with current user, so it can be modified
 # with env substitution
-COPY --chown=101 docker/config-local.js /usr/share/nginx/html/atlas/js/config-local.js
+# COPY --chown=101 docker/config-local.js /usr/share/nginx/html/atlas/js/config-local.js
