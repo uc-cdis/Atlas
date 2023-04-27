@@ -42,7 +42,7 @@
     "genversion": "2.2.0",
     "html-document": "0.8.1",
     "requirejs": "2.3.6",
-    "rimraf": "2.6.2",
+    "rimraf": "2.7.1",
     "terser": "5.16.4"
   },
   "dependencies": {
