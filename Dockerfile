@@ -37,8 +37,8 @@ LABEL org.opencontainers.image.vendor="OHDSI"
 LABEL org.opencontainers.image.source="https://github.com/OHDSI/Atlas"
 
 # URL where WebAPI can be queried by the client
-# ENV WEBAPI_URL=http://localhost:8080/WebAPI/ \
-#   CONFIG_PATH=/etc/atlas/config-local.js
+ENV WEBAPI_URL=http://localhost:8080/WebAPI/ \
+CONFIG_PATH=/etc/atlas/config-local.js
 
 # Configure webserver
 COPY ./docker/nginx-default.conf /etc/nginx/conf.d/default.conf
