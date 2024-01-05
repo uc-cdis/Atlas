@@ -134,6 +134,7 @@ define([
 			this.subscriptions.push(this.currentSource.subscribe(r => this.updateLocation()));
 
 			this.currentConcept = ko.observable();
+			this.showFeatures = config.show;
 		}
 
 		updateLocation() {

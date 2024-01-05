@@ -91,7 +91,6 @@ define(
 				});
 				this.companyInfoTemplate = config.companyInfoCustomHtmlTemplate;
 				this.showCompanyInfo = config.showCompanyInfo;
-				this.showFeatures = config.show;
 			}
 
 			/**
