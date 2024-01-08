@@ -7,7 +7,6 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<meta name="description" content="">
 		<meta name="author" content="">
-		<meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests"> 
 		
 		<link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon" />
 		<link rel="stylesheet" href="js/styles/splash.css" />
@@ -15,13 +14,6 @@
 
 		<title data-bind="text: pageTitle">ATLAS</title>
 		<script src="node_modules/bowser/bundled.js"></script>
-		<script>
-			function myFunction() {
-			  console.log("Page is loaded");
-			  console.log($data.title);
-			  console.log(appConfig.appDataSources);
-			}
-		</script>
 	</head>
 
 	<body class="app">
@@ -50,10 +42,10 @@
 
 			<div class="app__menu">
 				<!-- ko foreach: router.pages -->
-				<!-- ko if: ko.unwrap($data.title) && (ko.unwrap($data.title) == 'Home' || (showFeatures.appDataSources && ko.unwrap($data.title) == 'Data Sources') || (showFeatures.appSearch && ko.unwrap($data.title) == 'Search') || ko.unwrap($data.title) == 'Concept Sets' || (showFeatures.appCohortDefinitions && ko.unwrap($data.title) == 'Cohort Definitions')) -->
+				<!-- ko if: ko.unwrap($data.title) && (ko.unwrap($data.title) == 'Home' || ko.unwrap($data.title) == 'Data Sources' || ko.unwrap($data.title) == 'Search' || ko.unwrap($data.title) == 'Concept Sets' || ko.unwrap($data.title) == 'Cohort Definitions') --> 
 				<a data-bind="visible: !$data.hidden, attr: {href: navUrl()}, css: $parent.classes({ element: 'menu-item', modifiers: $parent.router.activeRoute().title === $data.title ? 'selected' : '', extra: statusCss() })">
 					<i data-bind="css: $parent.classes({ element: 'menu-icon', extra: `fa fa-fw fa-${icon}`})" aria-hidden="true"></i>
-					<span data-bind="text: $data.title, css: $parent.classes('menu-title')" onload="myfunction()"></span>
+					<span data-bind="text: $data.title, css: $parent.classes('menu-title')""></span>
 				</a>
 				<!-- /ko --> 
 				<!-- /ko -->
@@ -66,7 +58,7 @@
 
 				<div>provided by</div>
 				<div><a href="http://www.ohdsi.org"><img src="images/ohdsi_color.png"></a></div>
-				<div><a href="http://www.ohdsi.org">join the journeys</a></div>
+				<div><a href="http://www.ohdsi.org">join the journey</a></div>
 			</div>
 			<!-- /ko -->
 			<!-- ko if: companyInfoTemplate && showCompanyInfo-->
