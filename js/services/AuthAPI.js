@@ -88,6 +88,9 @@ define(function(require, exports) {
                 if (err.status === 401) {
                     console.log('User is not authed');
                     subject(null);
+                    if (config.enableSkipLogin) {
+                        signInOpened(true);
+                    }
                     resolve();
                 } else {
                     reject('Cannot retrieve user info');
@@ -250,6 +253,10 @@ define(function(require, exports) {
         return p && typeof p === 'object' && typeof p.status === 'function' && p.status() === 'pending';
     }
     var refreshToken = function() {
+
+        if (!config.userAuthenticationEnabled) {
+            return Promise.resolve(true); // no-op if userAuthenticationEnabled == false
+        }
 
         if (!isPromisePending(refreshTokenPromise)) {
           refreshTokenPromise = httpService.doGet(getServiceUrl() + "user/refresh");
@@ -512,6 +519,12 @@ define(function(require, exports) {
         });
     };
 
+    const executeWithRefresh = async function(httpPromise) {
+        const result = await httpPromise;
+        await refreshToken();
+        return result;
+    }
+
     var api = {
         AUTH_PROVIDERS: AUTH_PROVIDERS,
         AUTH_CLIENTS: AUTH_CLIENTS,
@@ -608,6 +621,7 @@ define(function(require, exports) {
         loadUserInfo,
         TOKEN_HEADER,
         runAs,
+        executeWithRefresh,
     };
 
     return api;

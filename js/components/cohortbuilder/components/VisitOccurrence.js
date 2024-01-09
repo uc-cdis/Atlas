@@ -4,6 +4,7 @@ define([
   "../options",
   "../utils",
   "../InputTypes/Range",
+  "../InputTypes/DateAdjustment",
   "../CriteriaGroup",
   "text!./VisitOccurrenceTemplate.html",
   "../const",
@@ -13,6 +14,7 @@ define([
   options,
   utils,
   Range,
+  DateAdjustment,
   CriteriaGroup,
   template,
   constants
@@ -64,6 +66,13 @@ define([
                 Op: "lt",
               })
             );
+        },
+      },
+      {
+        ...constants.visitAttributes.addDateAdjustment,
+        selected: false,
+        action: function () {
+          if (self.Criteria.DateAdjustment() == null) self.Criteria.DateAdjustment(new DateAdjustment());
         },
       },
       {
@@ -151,11 +160,11 @@ define([
       'components.conditionVisit.indexDataText',
       'The index date refers to the visit of <%= conceptSetName %>.',
       {
-        conceptSetName: utils.getConceptSetName(
+        conceptSetName: ko.pureComputed(() => utils.getConceptSetName(
           self.Criteria.CodesetId,
           self.expression.ConceptSets,
           ko.i18n('components.conditionVisit.anyVisit', 'Any Visit')
-        )
+        ))
       }
     );
   }

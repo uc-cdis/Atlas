@@ -85,6 +85,7 @@ define([
 			this.selectedAnalysisId = sharedState.IRAnalysis.selectedId;
 			this.previewVersion = sharedState.IRAnalysis.previewVersion;
 			this.dirtyFlag = sharedState.IRAnalysis.dirtyFlag;
+			this.enablePermissionManagement = config.enablePermissionManagement;	 
 			this.exporting = ko.observable();
 			this.isAuthenticated = ko.pureComputed(() => {
 				return authAPI.isAuthenticated();
@@ -465,7 +466,7 @@ define([
 			if (!this.pollId) {
 				this.pollId = JobPollService.add({
 					callback: silently => this.pollForInfo({ silently }),
-					interval: 10000,
+					interval: config.pollInterval,
 					isSilentAfterFirstCall: true,
 				});
 			}

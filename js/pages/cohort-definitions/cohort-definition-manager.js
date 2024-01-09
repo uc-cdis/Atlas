@@ -194,10 +194,11 @@ define(['jquery', 'knockout', 'text!./cohort-definition-manager.html',
 			super(params);
 
 			this.previewVersion = sharedState.CohortDefinition.previewVersion;
-
+		    
 			this.pollTimeoutId = null;
 			this.authApi = authApi;
 			this.config = config;
+			this.enablePermissionManagement = config.enablePermissionManagement;	    
 			this.relatedSourcecodesOptions = globalConstants.relatedSourcecodesOptions;
 			this.commonUtils = commonUtils;
 			this.isLoading = ko.observable(false);
@@ -611,7 +612,7 @@ define(['jquery', 'knockout', 'text!./cohort-definition-manager.html',
 			this.pollForInfoPeriodically = () => {
 				this.pollTimeoutId = PollService.add({
 					callback: () => this.pollForInfo(),
-					interval: 10000,
+					interval: config.pollInterval,
 				});
 			}
 
@@ -917,7 +918,7 @@ define(['jquery', 'knockout', 'text!./cohort-definition-manager.html',
 		startPolling(cd, source) {
 			this.pollId = PollService.add({
 				callback: () => this.queryHeraclesJob(cd, source),
-				interval: 10000,
+				interval: config.pollInterval,
 			});
 		}
 
