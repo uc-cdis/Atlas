@@ -2,6 +2,7 @@ define(['jquery', 'knockout', 'text!./cohort-definition-manager.html',
 	'appConfig',
 	'components/cohortbuilder/CohortDefinition',
 	'services/CohortDefinition',
+	'services/ShareRoleCheck',
 	'services/MomentAPI',
 	'services/ConceptSet',
 	'services/Permission',
@@ -67,7 +68,8 @@ define(['jquery', 'knockout', 'text!./cohort-definition-manager.html',
 	view,
 	config,
 	CohortDefinition,
-	cohortDefinitionService,
+        cohortDefinitionService,
+        shareRoleCheck,
 	momentApi,
 	conceptSetService,
 	PermissionService,
@@ -102,7 +104,7 @@ define(['jquery', 'knockout', 'text!./cohort-definition-manager.html',
 	globalConstants,
 	constants,
 	{ entityType },
-	conceptSetUtils,
+        conceptSetUtils,
 ) {
 	const includeKeys = ["UseEventEnd"];
 	function pruneJSON(key, value) {
@@ -201,7 +203,24 @@ define(['jquery', 'knockout', 'text!./cohort-definition-manager.html',
 			this.pollTimeoutId = null;
 			this.authApi = authApi;
 			this.config = config;
-			this.enablePermissionManagement = config.enablePermissionManagement;	    
+
+		        this.enablePermissionManagement = ko.observable(false);
+ 		        this.enablePermissionManagement(config.enablePermissionManagement);
+
+		        this.userCanShare = ko.observable(false);
+		        if (config.permissionManagementRoleId === "") {
+			   this.userCanShare(true);
+		        } else {
+			   shareRoleCheck.checkIfRoleCanShare(authApi.subject(), config.permissionManagementRoleId)
+				.then(res=>{
+				    this.userCanShare(res);
+				})
+				.catch(error => {
+				    console.error(error);
+				    alert(ko.i18n('cohortDefinitions.cohortDefinitionManager.shareRoleCheck', 'Error when determining if user can share cohorts')());
+				});
+			}		        
+		    
 			this.relatedSourcecodesOptions = globalConstants.relatedSourcecodesOptions;
 			this.commonUtils = commonUtils;
 			this.isLoading = ko.observable(false);
@@ -943,7 +962,7 @@ define(['jquery', 'knockout', 'text!./cohort-definition-manager.html',
 		}
 
 		// METHODS
-
+	    
 		startPolling(cd, source) {
 			this.pollId = PollService.add({
 				callback: () => this.queryHeraclesJob(cd, source),
