@@ -2,7 +2,6 @@ define(['jquery', 'knockout', 'text!./cohort-definition-manager.html',
 	'appConfig',
 	'components/cohortbuilder/CohortDefinition',
 	'services/CohortDefinition',
-	'services/ShareRoleCheck',
 	'services/MomentAPI',
 	'services/ConceptSet',
 	'services/Permission',
@@ -59,15 +58,14 @@ define(['jquery', 'knockout', 'text!./cohort-definition-manager.html',
 	'utilities/sql',
 	'components/conceptset/conceptset-list',
 	'components/name-validation',
-	'components/versions/versions',
+	'components/versions/versions'
 ], function (
 	$,
 	ko,
 	view,
 	config,
 	CohortDefinition,
-        cohortDefinitionService,
-        shareRoleCheck,
+	cohortDefinitionService,
 	momentApi,
 	conceptSetService,
 	PermissionService,
@@ -200,28 +198,30 @@ define(['jquery', 'knockout', 'text!./cohort-definition-manager.html',
 			this.pollTimeoutId = null;
 			this.authApi = authApi;
 			this.config = config;
-
-		        this.enablePermissionManagement = ko.observable(false);
- 		        this.enablePermissionManagement(config.enablePermissionManagement);
-
-		        this.userCanShare = ko.observable(false);
-		        if (config.permissionManagementRoleId === "") {
-			   this.userCanShare(true);
-		        } else {
-			   shareRoleCheck.checkIfRoleCanShare(authApi.subject(), config.permissionManagementRoleId)
-				.then(res=>{
-				    this.userCanShare(res);
-				})
-				.catch(error => {
-				    console.error(error);
-				    alert(ko.i18n('cohortDefinitions.cohortDefinitionManager.shareRoleCheck', 'Error when determining if user can share cohorts')());
-				});
-			}		        
-		    
 			this.relatedSourcecodesOptions = globalConstants.relatedSourcecodesOptions;
 			this.commonUtils = commonUtils;
 			this.isLoading = ko.observable(false);
 			this.currentCohortDefinition = sharedState.CohortDefinition.current;
+
+			PermissionService.decorateComponent(this, {
+				entityTypeGetter: () => entityType.COHORT_DEFINITION,
+				entityIdGetter: () => this.currentCohortDefinition().id(),
+				createdByUsernameGetter: () => this.currentCohortDefinition() && this.currentCohortDefinition().createdBy()
+					&& this.currentCohortDefinition().createdBy().login
+			});
+
+			this.enablePermissionManagement = ko.observable(config.enablePermissionManagement);
+			if (config.enablePermissionManagement) {
+				this.userCanShare = ko.observable(
+						  (config.limitedPermissionManagement &&
+						   authApi.isPermittedGlobalShareArtifact()) ||
+						  (!config.limitedPermissionManagement &&
+						   this.isOwner())
+						);
+			} else {
+				this.userCanShare = ko.observable(false);
+			}
+
 			this.currentCohortDefinitionMode = sharedState.CohortDefinition.mode;
 			this.currentCohortDefinitionInfo = sharedState.CohortDefinition.info;
 			this.cohortDefinitionSourceInfo = sharedState.CohortDefinition.sourceInfo;
@@ -868,12 +868,6 @@ define(['jquery', 'knockout', 'text!./cohort-definition-manager.html',
 
 			}
 
-			PermissionService.decorateComponent(this, {
-				entityTypeGetter: () => entityType.COHORT_DEFINITION,
-				entityIdGetter: () => this.currentCohortDefinition().id(),
-				createdByUsernameGetter: () => this.currentCohortDefinition() && this.currentCohortDefinition().createdBy()
-					&& this.currentCohortDefinition().createdBy().login
-			});
 
 			TagsService.decorateComponent(this, {
 				assetTypeGetter: () => TagsService.ASSET_TYPE.COHORT_DEFINITION,

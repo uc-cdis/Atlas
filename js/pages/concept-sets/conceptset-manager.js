@@ -8,8 +8,7 @@ define([
 	'./const',
 	'const',
 	'components/conceptset/utils',
-        'services/Vocabulary',
-    	'services/ShareRoleCheck',
+	'services/Vocabulary',
 	'services/Permission',
 	'services/Tags',
 	'components/security/access/const',
@@ -56,8 +55,7 @@ define([
 	constants,
 	globalConstants,
 	utils,
-        vocabularyAPI,
-        shareRoleCheck,
+	vocabularyAPI,
 	GlobalPermissionService,
 	TagsService,
 	{ entityType },
@@ -177,24 +175,25 @@ define([
 				return this.currentConceptSet() && this.currentConceptSet().id > 0;
 			});
 
-		        this.enablePermissionManagement = ko.observable(false);
- 		        this.enablePermissionManagement(config.enablePermissionManagement);
+			GlobalPermissionService.decorateComponent(this, {
+				entityTypeGetter: () => entityType.CONCEPT_SET,
+				entityIdGetter: () => this.currentConceptSet() && this.currentConceptSet().id,
+				createdByUsernameGetter: () => this.currentConceptSet() && this.currentConceptSet().createdBy
+					&& this.currentConceptSet().createdBy.login
+			});
 
-		        this.userCanShare = ko.observable(false);
-		        if (config.permissionManagementRoleId === "") {
-			   this.userCanShare(true);
-		        } else {
-			   shareRoleCheck.checkIfRoleCanShare(authApi.subject(), config.permissionManagementRoleId)
-				.then(res=>{
-				    this.userCanShare(res);
-				})
-				.catch(error => {
-				    console.error(error);
-				    alert(ko.i18n('conceptSets.conceptSetManager.shareRoleCheck', 'Error when determining if user can share concept sets')());
-				});
-			}		        
+			this.enablePermissionManagement = ko.observable(config.enablePermissionManagement);
+			if (config.enablePermissionManagement) {
+				this.userCanShare = ko.observable(
+					(config.limitedPermissionManagement &&
+					 authApi.isPermittedGlobalShareArtifact()) ||
+					(!config.limitedPermissionManagement &&
+					 this.isOwner())
+				  );
+			} else {
+				this.userCanShare = ko.observable(false);
+			}
 
-		    
 			this.isSaving = ko.observable(false);
 			this.isDeleting = ko.observable(false);
 			this.isOptimizing = ko.observable(false);
@@ -351,13 +350,6 @@ define([
 			this.selectedTab = ko.observable(0);
 
 			this.activeUtility = ko.observable("");
-
-			GlobalPermissionService.decorateComponent(this, {
-				entityTypeGetter: () => entityType.CONCEPT_SET,
-				entityIdGetter: () => this.currentConceptSet() && this.currentConceptSet().id,
-				createdByUsernameGetter: () => this.currentConceptSet() && this.currentConceptSet().createdBy
-					&& this.currentConceptSet().createdBy.login
-			});
 
 			this.tags = ko.observableArray(this.currentConceptSet() && this.currentConceptSet().tags);
 			TagsService.decorateComponent(this, {
