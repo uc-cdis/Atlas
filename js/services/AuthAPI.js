@@ -377,6 +377,12 @@ define(function(require, exports) {
         return isPermitted('cohortdefinition:' + id + ':copy:get');
     }
 
+    var isPermittedGlobalShareCohort = function() {
+        // special * permission (intended for admins) that allows the
+        // user to share any cohort with a "global reader role":
+        return isPermitted('cohortdefinition:global:share:put');
+    }
+
     var isPermittedUpdateCohort = function(id) {
         var permission = 'cohortdefinition:' + id + ':put';
         return isPermitted(permission);
@@ -561,6 +567,7 @@ define(function(require, exports) {
         isPermittedReadCohort: isPermittedReadCohort,
         isPermittedCreateCohort: isPermittedCreateCohort,
         isPermittedCopyCohort: isPermittedCopyCohort,
+        isPermittedGlobalShareCohort: isPermittedGlobalShareCohort,
         isPermittedUpdateCohort: isPermittedUpdateCohort,
         isPermittedDeleteCohort: isPermittedDeleteCohort,
         isPermittedGenerateCohort: isPermittedGenerateCohort,
