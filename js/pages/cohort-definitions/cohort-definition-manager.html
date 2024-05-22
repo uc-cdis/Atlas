@@ -35,7 +35,7 @@
 
 					<!-- ko if: (enablePermissionManagement() === true && userCanShare() === true) -->
 					<button class="btn btn-primary"
-						data-bind="title: ko.i18n('common.configureAccess', 'Configure access'), visible: isOwner() && !previewVersion(), click: () => isAccessModalShown(!isAccessModalShown())">
+						data-bind="title: ko.i18n('common.configureAccess', 'Configure access'), visible: !previewVersion(), click: () => isAccessModalShown(!isAccessModalShown())">
 						<i class="fa fa-lock"></i>
 					</button>
 					<!-- /ko -->
