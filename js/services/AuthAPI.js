@@ -254,6 +254,10 @@ define(function(require, exports) {
     }
     var refreshToken = function() {
 
+        if (!config.userAuthenticationEnabled) {
+            return Promise.resolve(true); // no-op if userAuthenticationEnabled == false
+        }
+
         if (!isPromisePending(refreshTokenPromise)) {
           refreshTokenPromise = httpService.doGet(getServiceUrl() + "user/refresh");
           refreshTokenPromise.then(({ data, headers }) => {
@@ -375,6 +379,12 @@ define(function(require, exports) {
         return isPermitted('cohortdefinition:' + id + ':copy:get');
     }
 
+    var isPermittedGlobalShareArtifact = function() {
+        // special * permission (intended for admins) that allows the
+        // user to share any artifact with a "global reader role":
+        return isPermitted('artifact:global:share:put');
+    }
+
     var isPermittedUpdateCohort = function(id) {
         var permission = 'cohortdefinition:' + id + ':put';
         return isPermitted(permission);
@@ -387,8 +397,18 @@ define(function(require, exports) {
     }
 
     var isPermittedGenerateCohort = function(cohortId, sourceKey) {
-        return isPermitted('cohortdefinition:' + cohortId + ':generate:' + sourceKey + ':get') &&
+        var v = isPermitted('cohortdefinition:' + cohortId + ':generate:' + sourceKey + ':get') &&
             isPermitted('cohortdefinition:' + cohortId + ':info:get');
+
+        // By default, everyone can generate any artifact they have
+        // permission to read. If limitedPermissionManagement has
+        // been set to true, the default
+        // generate functionality is not desired. Rather, users will have to
+        // have a permission that allows them to update the specific cohort definition. 
+        if (config.limitedPermissionManagement){
+            v = v && isPermitted('cohortdefinition:' + cohortId + ':put')
+        }
+        return v
     }
 
     var isPermittedReadCohortReport = function(cohortId, sourceKey) {
@@ -517,9 +537,7 @@ define(function(require, exports) {
 
     const executeWithRefresh = async function(httpPromise) {
         const result = await httpPromise;
-        if (config.userAuthenticationEnabled) {
-            await refreshToken();
-        }
+        await refreshToken();
         return result;
     }
 
@@ -558,6 +576,7 @@ define(function(require, exports) {
         isPermittedReadCohort: isPermittedReadCohort,
         isPermittedCreateCohort: isPermittedCreateCohort,
         isPermittedCopyCohort: isPermittedCopyCohort,
+        isPermittedGlobalShareArtifact: isPermittedGlobalShareArtifact,
         isPermittedUpdateCohort: isPermittedUpdateCohort,
         isPermittedDeleteCohort: isPermittedDeleteCohort,
         isPermittedGenerateCohort: isPermittedGenerateCohort,

@@ -99,7 +99,7 @@ define(['jquery', 'knockout', 'text!./cohort-definition-manager.html',
 	globalConstants,
 	constants,
 	{ entityType },
-	conceptSetUtils,
+        conceptSetUtils,
 ) {
 	const includeKeys = ["UseEventEnd"];
 	function pruneJSON(key, value) {
@@ -198,11 +198,30 @@ define(['jquery', 'knockout', 'text!./cohort-definition-manager.html',
 			this.pollTimeoutId = null;
 			this.authApi = authApi;
 			this.config = config;
-			this.enablePermissionManagement = config.enablePermissionManagement;	    
 			this.relatedSourcecodesOptions = globalConstants.relatedSourcecodesOptions;
 			this.commonUtils = commonUtils;
 			this.isLoading = ko.observable(false);
 			this.currentCohortDefinition = sharedState.CohortDefinition.current;
+
+			PermissionService.decorateComponent(this, {
+				entityTypeGetter: () => entityType.COHORT_DEFINITION,
+				entityIdGetter: () => this.currentCohortDefinition().id(),
+				createdByUsernameGetter: () => this.currentCohortDefinition() && this.currentCohortDefinition().createdBy()
+					&& this.currentCohortDefinition().createdBy().login
+			});
+
+			this.enablePermissionManagement = ko.observable(config.enablePermissionManagement);
+			if (config.enablePermissionManagement) {
+				this.userCanShare = ko.observable(
+						  (config.limitedPermissionManagement &&
+						   authApi.isPermittedGlobalShareArtifact()) ||
+						  (!config.limitedPermissionManagement &&
+						   this.isOwner())
+						);
+			} else {
+				this.userCanShare = ko.observable(false);
+			}
+
 			this.currentCohortDefinitionMode = sharedState.CohortDefinition.mode;
 			this.currentCohortDefinitionInfo = sharedState.CohortDefinition.info;
 			this.cohortDefinitionSourceInfo = sharedState.CohortDefinition.sourceInfo;
@@ -849,12 +868,6 @@ define(['jquery', 'knockout', 'text!./cohort-definition-manager.html',
 
 			}
 
-			PermissionService.decorateComponent(this, {
-				entityTypeGetter: () => entityType.COHORT_DEFINITION,
-				entityIdGetter: () => this.currentCohortDefinition().id(),
-				createdByUsernameGetter: () => this.currentCohortDefinition() && this.currentCohortDefinition().createdBy()
-					&& this.currentCohortDefinition().createdBy().login
-			});
 
 			TagsService.decorateComponent(this, {
 				assetTypeGetter: () => TagsService.ASSET_TYPE.COHORT_DEFINITION,
@@ -914,7 +927,7 @@ define(['jquery', 'knockout', 'text!./cohort-definition-manager.html',
 		}
 
 		// METHODS
-
+	    
 		startPolling(cd, source) {
 			this.pollId = PollService.add({
 				callback: () => this.queryHeraclesJob(cd, source),
