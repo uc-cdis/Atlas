@@ -407,7 +407,7 @@ define(['jquery', 'knockout', 'text!./cohort-definition-manager.html',
 			});
 			this.canCopy = ko.pureComputed(() => {
 				return !this.dirtyFlag().isDirty() && !this.isNew() &&
-					(this.isAuthenticated() && this.authApi.isPermittedCopyCohort(this.currentCohortDefinition().id()) || !config.userAuthenticationEnabled);
+					(this.isAuthenticated() && this.authApi.isPermittedReadCohort(this.currentCohortDefinition().id()) || !config.userAuthenticationEnabled);
 			});
 			this.canDelete = ko.pureComputed(() => {
 				if (this.isNew()) {
