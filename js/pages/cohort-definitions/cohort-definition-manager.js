@@ -410,6 +410,11 @@ define(['jquery', 'knockout', 'text!./cohort-definition-manager.html',
 					(this.isAuthenticated() && this.authApi.isPermittedCopyCohort(this.currentCohortDefinition().id()) || !config.userAuthenticationEnabled);
 			});
 			this.canDelete = ko.pureComputed(() => {
+				// tmp: temporarily disable the delete option for cohortdefinition
+				// until we have a final solution for storing cohortdefinitions as part
+				// of a workflow run. TODO - remove this once a solution is in place.
+				// See https://ctds-planx.atlassian.net/browse/VADC-1177
+				return false;
 				if (this.isNew()) {
 					return false;
 				}
