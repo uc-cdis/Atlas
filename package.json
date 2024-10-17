@@ -34,7 +34,7 @@
   },
   "homepage": "https://github.com/OHDSI/Atlas#readme",
   "devDependencies": {
-    "@babel/core": "7.21.0",
+    "@babel/core": "7.25.2",
     "@babel/plugin-proposal-object-rest-spread": "7.20.7",
     "@babel/polyfill": "7.12.1",
     "@babel/preset-env": "7.20.2",
