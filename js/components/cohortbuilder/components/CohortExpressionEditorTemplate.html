@@ -50,11 +50,11 @@
 			<div class="observation-window" data-bind="with: $component.expression().PrimaryCriteria().ObservationWindow">
 				<span
 					data-bind="text: ko.i18n('components.cohortExpressionEditor.cohortEntryEventsText_3', 'with continuous observation of at least')"></span>
-				<span contenteditable="true" class="numericInputField dropdown"
+				<span contenteditable="true" title="Number of days before selector" class="numericInputField dropdown"
 					data-bind="htmlValue: PriorDays.numeric(), eventType: 'blur', ko_autocomplete: { value: PriorDays, source: $component.options.dayOptions, minLength: 0, maxShowItems: 10, scroll: true }" />
 				<span
 					data-bind="text: ko.i18n('components.cohortExpressionEditor.cohortEntryEventsText_4', 'days before and')"></span>
-				<span contenteditable="true" class="numericInputField dropdown"
+				<span contenteditable="true" title="Number of days after selector" class="numericInputField dropdown"
 					data-bind="htmlValue: PostDays.numeric(), eventType: 'blur', ko_autocomplete: { value: PostDays, source: $component.options.dayOptions, minLength: 0, maxShowItems: 10, scroll: true }" />
 				<span
 					data-bind="text: ko.i18n('components.cohortExpressionEditor.cohortEntryEventsText_5', 'days after event index date')"></span>
@@ -62,7 +62,7 @@
 			<div style="padding-top: 3px" data-bind="with: expression().PrimaryCriteria().PrimaryCriteriaLimit">
 				<span
 					data-bind="text: ko.i18n('components.cohortExpressionEditor.cohortEntryEventsText_6', 'Limit initial events to:')"></span>
-				<select data-bind="options: $component.options.resultLimitOptions,
+				<select title="Limit initial events to" data-bind="options: $component.options.resultLimitOptions,
 				optionsText: function(item) { return item.name },
 				optionsValue: 'id',
 				value: Type">
@@ -157,7 +157,7 @@
 		<div style="padding-top: 3px" data-bind="with: expression().ExpressionLimit">
 			<span
 				data-bind="text: ko.i18n('components.cohortExpressionEditor.inclusionCriteriaText_1', 'Limit qualifying events to:')"></span>
-			<select data-bind="options: $component.options.resultLimitOptions,
+			<select title="Limit qualifying events to" data-bind="options: $component.options.resultLimitOptions,
 			optionsText: function(item) { return item.name },
 			optionsValue: 'id',
 			value: Type">
@@ -200,7 +200,7 @@
 			<ul>
 				<li>
 					<span data-bind="text: ko.i18n('components.cohortExpressionEditor.cohortErasText_1', 'Specify era collapse gap size:')"></span>
-					<span contenteditable="true" class="numericInputField dropdown" data-bind="htmlValue: CollapseSettings.EraPad.numeric(), eventType: 'blur', ko_autocomplete: { value: CollapseSettings.EraPad, source: $component.options.dayOptions, minLength: 0, maxShowItems: 10, scroll: true }" />
+					<span contenteditable="true" title="Number of days" class="numericInputField dropdown" data-bind="htmlValue: CollapseSettings.EraPad.numeric(), eventType: 'blur', ko_autocomplete: { value: CollapseSettings.EraPad, source: $component.options.dayOptions, minLength: 0, maxShowItems: 10, scroll: true }" />
 					<span data-bind="text: ko.i18n('components.cohortExpressionEditor.days', 'days')"></span>
 				</li>
 				<!-- ko if: $component.showCensorWindow -->
