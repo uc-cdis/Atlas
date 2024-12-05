@@ -59,42 +59,42 @@
 		</div>
 
 		<ul class="nav nav-tabs">
-			<li role="presentation"
+			<li role="tab"
 				data-bind="css: { active: $component.tabMode() == 'definition' }, click: function() { $component.selectTab('definition'); }">
 				<a data-bind="text: ko.i18n('cohortDefinitions.cohortDefinitionManager.tabs.definition', 'Definition')"><i
 						data-bind="click: function () { $component.cohortDefinitionOpened(true) }"
 						class="fa fa-question-circle-o"></i></a>
 			</li>
 
-			<li role="presentation"
+			<li role="tab"
 				data-bind="css: { active: $component.tabMode() == 'conceptsets' }, click: function() { $component.selectTab('conceptsets'); }">
 				<a data-bind="text: ko.i18n('cohortDefinitions.cohortDefinitionManager.tabs.conceptSets', 'Concept Sets')"></a>
 			</li>
 
-			<li role="presentation"
+			<li role="tab"
 				data-bind="visible: !previewVersion(), css: { active: $component.tabMode() == 'generation' }, click: function() { $component.selectTab('generation'); }">
 				<a data-bind="text: ko.i18n('cohortDefinitions.cohortDefinitionManager.tabs.generation', 'Generation')"></a>
 			</li>
 		<!-- disable "samples" and "reporting" tabs
 
-			<li role="presentation"
+			<li role="tab"
 			    data-bind="visible: !previewVersion(), css: { active: $component.tabMode() == 'samples' }, click: clickSampleTab">
 			    <a data-bind="text: ko.i18n('cohortDefinitions.cohortDefinitionManager.tabs.samples', 'Samples')"></a>
 			</li>
 
-			<li role="presentation"
+			<li role="tab"
 				data-bind="visible: !previewVersion(), css: { active: $component.tabMode() == 'reporting' }, click: function() { $component.selectTab('reporting'); }">
 				<a data-bind="text: ko.i18n('cohortDefinitions.cohortDefinitionManager.tabs.reporting', 'Reporting')"></a>
 			</li>
 		-->
-			<li role="presentation"
+			<li role="tab"
 				data-bind="visible: !previewVersion(), css: { active: $component.tabMode() == 'export' }, click: () => { $component.selectTab('export'); refreshPrintFriendly(); }">
 				<a data-bind="text: ko.i18n('cohortDefinitions.cohortDefinitionManager.tabs.export', 'Export')"></a>
 			</li>
-			<li role="presentation" data-bind="css: { active: $component.tabMode() == 'versions' }, click: () => { $component.selectTab('versions'); }">
+			<li role="tab" data-bind="css: { active: $component.tabMode() == 'versions' }, click: () => { $component.selectTab('versions'); }">
 				<a data-bind="text: ko.i18n('cohortDefinitions.cohortDefinitionManager.tabs.versions', 'Versions')"></a>
 			</li>
-			<li role="presentation" data-bind="css: { active: $component.tabMode() === 'warnings' }, click: function(){ $component.selectTab('warnings'); } ">
+			<li role="tab" data-bind="css: { active: $component.tabMode() === 'warnings' }, click: function(){ $component.selectTab('warnings'); } ">
 				<a>
 					<span data-bind="text: ko.i18n('cohortDefinitions.cohortDefinitionManager.tabs.messages', 'Messages')"></span>
 					<!-- ko component: { name: 'warnings-badge', params: warningParams() } --> <!-- /ko -->
@@ -117,22 +117,22 @@
 			</div>
 			<div role="tabpanel" data-bind="css: { active: $component.tabMode() == 'export' }" class="tab-pane">
 				<ul class="nav nav-pills">
-					<li role="presentation"
+					<li role="tab"
 						data-bind="css: { active: $component.exportTabMode() == 'printfriendly' }, click: function() { $component.exportTabMode('printfriendly'); }">
 						<a data-bind="text: ko.i18n('cohortDefinitions.cohortDefinitionManager.panels.textView', 'Text View')"></a>
 					</li>
 
-					<li role="presentation"
+					<li role="tab"
 						data-bind="css: { active: $component.exportTabMode() == 'cartoon' }, click: function() { $component.exportTabMode('cartoon'); }">
 						<a data-bind="text: ko.i18n('cohortDefinitions.cohortDefinitionManager.panels.graphicalView', 'Graphical View')"></a>
 					</li>
 
-					<li role="presentation"
+					<li role="tab"
 						data-bind="css: { active: $component.exportTabMode() == 'json' }, click: function() { $component.exportTabMode('json'); }">
 						<a data-bind="text: ko.i18n('cohortDefinitions.cohortDefinitionManager.panels.json', 'JSON')"></a>
 					</li>
 
-					<li role="presentation"
+					<li role="tab"
 						data-bind="css: { active: $component.exportTabMode() == 'sql' }, click: function() { $component.exportTabMode('sql');}">
 						<a data-bind="text: ko.i18n('cohortDefinitions.cohortDefinitionManager.panels.sql', 'SQL')"></a>
 					</li>
