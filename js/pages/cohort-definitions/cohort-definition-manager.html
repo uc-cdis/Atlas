@@ -25,13 +25,17 @@
 						data-bind="title: ko.i18n('cohortDefinitions.cohortDefinitionManager.closeCohortTitle', 'Close cohort definition'), click: close, css: { disabled: isProcessing() }"><i
 							class="fa fa-times"></i></button>
 					<!-- ko if: currentCohortDefinition().id() != null && currentCohortDefinition().id() != 0 -->
+					<!-- Hide this not-so-useful part and make the page more 508 compliant:
 					<button class="btn btn-primary"
 						data-bind="title: ko.i18n('common.tags', 'Tags'), visible: canEdit() && !previewVersion(), click: () => isTagsModalShown(!isTagsModalShown()), css: { disabled: isProcessing() }"><i class="fa fa-tags"></i></button>
+					-->
 					<button class="btn btn-primary"
 						data-bind="visible: !previewVersion(), title: ko.i18n('cohortDefinitions.cohortDefinitionManager.createCopyCohortTitle', 'Create a copy of this cohort definition'), click: copy, enable: canCopy() && !isProcessing()"><i
 							class="fa fa-copy"></i></button>
+					<!-- Hide this not-so-useful part and make the page more 508 compliant:
 					<button class="btn btn-primary"
 						data-bind="visible: !previewVersion(), title: ko.i18n('cohortDefinitions.cohortDefinitionManager.getLinkCohortTitle', 'Get a link to this cohort definition'), enable: !dirtyFlag().isDirty() && !isProcessing(), click: function () { $component.cohortLinkModalOpened(true) }"><i class="fa fa-link"></i></button>
+					-->
 
 					<!-- ko if: (enablePermissionManagement() === true && userCanShare() === true) -->
 					<button class="btn btn-primary"
@@ -132,10 +136,12 @@
 						<a role="tab" data-bind="text: ko.i18n('cohortDefinitions.cohortDefinitionManager.panels.json', 'JSON')"></a>
 					</li>
 
+					<!-- Hide this not-so-useful part and make the page more 508 compliant:
 					<li role="presentation"
 						data-bind="css: { active: $component.exportTabMode() == 'sql' }, click: function() { $component.exportTabMode('sql');}">
 						<a role="tab" data-bind="text: ko.i18n('cohortDefinitions.cohortDefinitionManager.panels.sql', 'SQL')"></a>
 					</li>
+					-->
 				</ul>
 
 				<div class="tab-content">
