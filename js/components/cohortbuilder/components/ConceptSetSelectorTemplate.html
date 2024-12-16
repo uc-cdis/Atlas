@@ -11,9 +11,9 @@
 			<span class="sr-only" data-bind="text:conceptSetName"></span>
 		</button>
 
-		<ul class="dropdown-menu dropdown-menu-right" role="menu"
+		<ul class="dropdown-menu dropdown-menu-right"
 			style="height: auto; max-height:200px; width:200px; overflow-x: hidden; padding:4px" role="menu">
-			<li class="dropdown-item" onclick="event.stopPropagation();">
+			<li class="dropdown-item" onclick="event.stopPropagation();" role="menuitem">
 				<input type="text" style="width:100%; border: solid 1px #9bc1fd; border-radius: 3px"
 					data-bind="attr: {placeholder: ko.i18n('components.conceptSetSelector.searchWithTripleDots', 'Search...')}, textInput: filterText">
 			</li>
@@ -27,16 +27,16 @@
 				</a>
 			</li>
 			<!-- ko if: $component.conceptSetId() != null && $index() == 0  -->
-			<li class="divider"></li>
+			<li class="divider" role="separator"></li>
 			<!-- /ko -->
 			<!-- /ko -->
 			<!-- ko if: filteredConceptSets().length > 1 -->
-			<li class="divider"></li>
+			<li class="divider" role="separator"></li>
 			<!-- /ko -->
-			<li style="cursor:pointer"><a class="conceptset_import">
+			<li style="cursor:pointer"><a class="conceptset_import" role="menuitem">
 					<span data-bind="text:ko.i18n('components.conceptSetSelector.importConcept','Import Concept Set')"></span>
 				</a></li>
-			<li style="cursor:pointer"><a data-bind="click: clear">
+			<li style="cursor:pointer"><a data-bind="click: clear" role="menuitem">
 					<span data-bind="text:ko.i18n('components.conceptSetSelector.clearConceptSet','Clear Concept Set')"></span>
 				</a></li>
 		</ul>
