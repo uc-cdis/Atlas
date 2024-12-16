@@ -15,12 +15,16 @@
                 orderColumn: 3,
                 reference: repositoryConceptSets(),
                 columns: columns,
-                options: options,
+                options: {
+                    paging: false,  // Disable pagination
+                    searching: true,  // Keep the search bar
+                },
+                buttons: [], // Ensure no buttons are displayed
                 language: ko.i18n('datatable.language'),
                 autoWidth: false,
                 orderClasses: false,
                 deferRender: true,
-                pageLength: pageLength,
+                // pageLength: pageLength,
                 lengthMenu: lengthMenu,
                 rowClick: selectRepositoryConceptSet">
             </faceted-datatable>
