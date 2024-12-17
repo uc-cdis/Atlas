@@ -33,10 +33,10 @@
 			<!-- ko if: filteredConceptSets().length > 1 -->
 			<li class="divider" role="separator"></li>
 			<!-- /ko -->
-			<li style="cursor:pointer"><a class="conceptset_import" role="menuitem">
+			<li style="cursor:pointer" role="menuitem"><a class="conceptset_import">
 					<span data-bind="text:ko.i18n('components.conceptSetSelector.importConcept','Import Concept Set')"></span>
 				</a></li>
-			<li style="cursor:pointer"><a data-bind="click: clear" role="menuitem">
+			<li style="cursor:pointer" role="menuitem"><a data-bind="click: clear">
 					<span data-bind="text:ko.i18n('components.conceptSetSelector.clearConceptSet','Clear Concept Set')"></span>
 				</a></li>
 		</ul>
