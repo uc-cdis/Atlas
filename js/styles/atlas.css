@@ -62,7 +62,7 @@ td.id-column {
 }
 
 .asset-heading {
-  background-color: #333333;
+  background-color: #242424;
   padding: 7px;
   white-space: nowrap;
   color: #fff;
@@ -278,7 +278,7 @@ pre span.key {
 
 .wrapperTitle {
   position: relative;
-  background-color: #333333;
+  background-color: #242424;
   height: 28px;
   color: #fff;
   line-height: 28px;
@@ -835,7 +835,7 @@ input.btn.btn-default {
 g.trellisLegend {}
 
 .loading {
-  color: #A5B3BD;
+  color: #757575;
   font-size: 14px;
   text-align: center;
   padding-top: 10px;
@@ -1464,14 +1464,14 @@ div.button-overlay {
 
 .nav>li>a {
   padding: 5px 10px 5px 10px;
-  background-color: #888;
-  color: #ccc;
+  background-color: #696969;
+  color: #EBEBEB;
 }
 
 .nav-tabs li a, .nav-tabs li a:hover {
-  color: #ccc;
+  color: #EBEBEB;
   line-height: 15px;
-  background-color: #888;
+  background-color: #696969;
 }
 
 .nav-pills li a:hover {
@@ -1574,7 +1574,7 @@ li.current-asset {
 }
 
 .release-notes {
-  background-color: #eee;
+  background-color: #fff;
   margin: 3px;
   padding: 5px;
   border: solid 1px #ddd;
@@ -1586,6 +1586,12 @@ li.current-asset {
 
 .home-documentation {
   /* margin: 10px; */
+}
+
+.release-notes a,
+.home-welcome a, 
+.home-documentation a {
+    text-decoration: underline;
 }
 
 .home-documentation .fa {
@@ -1958,7 +1964,7 @@ ul.nav-tabs a i.fa.fa-question-circle-o {
 }
 
 .cohort-definition-panel .optionDescription {
-  color: #888;
+  color: #757575;
   font-size: 10px;
 }
 
