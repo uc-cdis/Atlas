@@ -8,7 +8,7 @@
 	<!-- for notifications, job completion, etc. -->
 	<div class="user-bar-container">
 		<!-- ko if: availableLocales().length > 1 -->
-		<select data-bind="css: classes('locale'), foreach:availableLocales, value: locale">
+		<select title="Select your preferred language" data-bind="css: classes('locale'), foreach:availableLocales, value: locale">
 			<option data-bind="value: $data.code, text:$data.name"></option>
 		</select>
 		<!-- /ko -->

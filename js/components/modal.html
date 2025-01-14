@@ -1,4 +1,4 @@
-<div
+<div aria-labelledby="atlas-modal-dialog-title"
 	data-bind="modal: $component.showModal, css: classes({ extra: ['modal', fade() ? 'fade' : ''], modifiers: $component.modifiers })"
 	tabindex="-1" role="dialog">
 	<div class="modal-dialog"
@@ -10,7 +10,7 @@
 						aria-hidden="true">&times;</span></button>
 				<!-- /ko -->
 				<i data-bind="css: $component.iconClass"></i>
-				<div class="modal-title" data-bind="text: $component.title"></div>
+				<div id="atlas-modal-dialog-title" class="modal-title" data-bind="text: $component.title"></div>
 			</div>
 			<div data-bind="if: $component.showModal, css: classes(templateWrapperClass)">
 				<!-- ko if: $component.template -->

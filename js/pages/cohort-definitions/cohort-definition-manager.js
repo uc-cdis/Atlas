@@ -602,6 +602,7 @@ define(['jquery', 'knockout', 'text!./cohort-definition-manager.html',
 
 			this.sourcesTableOptions = commonUtils.getTableOptions('S');
 			this.sourcesColumns = [{
+				title: `<span>${ko.i18n('cohortDefinitions.cohortDefinitionManager.panels.options', 'Options')()}</span>`,
 				sortable: false,
 				className: 'generation-buttons-column',
 				render: () => `<span data-bind="template: { name: 'generation-buttons', data: $data }"></span>`

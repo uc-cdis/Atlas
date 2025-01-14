@@ -51,7 +51,23 @@ define([
       );
     });
 
-    self.itemClicked = function (item) {
+    self.itemClicked = function (item, event) {
+      // Check for key presses
+      if (event.type === "keydown") {
+        const key = event.key;
+        if (key === "Enter" || key === " ") {
+            event.preventDefault(); // Prevent default behavior
+            event.target.click();  // Simulate a click, which closes the menu
+            return true;
+        } else if (key === "ArrowRight") {
+            event.preventDefault();   
+            const hoverEvent = new Event('mouseover', { bubbles: true });
+            event.target.dispatchEvent(hoverEvent);  // Simulate hover.
+            return true;
+        } else {
+            return true; // Let other keys propagate normally
+        }
+      }
       self.conceptSetId(item.id);
       self.previewVisible(false);
     };
