@@ -100,12 +100,12 @@ define([
 				},
 				nameCol,
 				... context.isEditPermitted() ? [{
-					title: '',
+					title: 'Actions (edit)',
 					render: context.getEditCell('editCohort'),
 					className: context.classes('col-cohort-edit'),
 				},
 					{
-						title: '',
+						title: 'Actions (remove)',
 						render: context.getRemoveCell('removeCohort'),
 						className: context.classes('col-cohort-remove'),
 					}] : []
@@ -114,7 +114,7 @@ define([
 
 		const getRelatedSourcecodesColumns = (sharedState, context, selectAllFn) => [
 			{
-				title: '',
+				title: 'Select',
 				orderable: false,
 				searchable: false,
 				className: 'text-center',

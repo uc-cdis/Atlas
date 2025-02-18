@@ -18,7 +18,7 @@ define(['knockout','utils/CommonUtils', 'utils/Renderers', 'services/http','atla
 
 	const getRecommendedConceptColumns = (sharedState, context, selectAllFn) => [
 		{
-			title: '',
+			title: 'Select',
 			orderable: false,
 			searchable: false,
 			className: 'text-center',

@@ -91,7 +91,7 @@
         class="btn btn-danger btn-sm"
         data-bind="
           click: removeConceptsFromConceptSet,
-          css: { disabled: conceptsForRemovalLength() === 0 },
+          visible: conceptsForRemovalLength() > 0,
           text: ko.i18n('components.conceptSet.removeSelected', 'Remove Selected'),
         "
       ></button>
