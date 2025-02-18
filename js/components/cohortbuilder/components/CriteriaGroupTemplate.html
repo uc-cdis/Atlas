@@ -25,7 +25,7 @@
 							<span data-bind="text: ko.i18n('components.criteriaGroup.having','having')"></span>
 						</span>
 
-						<select
+						<select aria-label="Select option for 'having'"
 							data-bind="options: $component.options.groupTypeOptions, optionsText: 'name', optionsValue: 'id', value: group().Type"></select>
 						<!-- ko if: group().Type().startsWith("AT_") -->
 						<span contenteditable="true" class="numericInputField dropdown"

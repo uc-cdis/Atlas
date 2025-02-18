@@ -148,7 +148,7 @@ define([
 				return `<div style="white-space: nowrap" title="${c.tooltip()}"><i id="${c.elementId}" class="fa ${c.icon}"></i> ${c.title()}</div>`
 			};
 			this.searchColumns = [{
-				title: '',
+				title: 'Select',
 				render: (s, p, d) => this.renderCheckbox('isSelected'),
 				orderable: false,
 				searchable: false,

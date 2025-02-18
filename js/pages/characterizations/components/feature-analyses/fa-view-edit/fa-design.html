@@ -4,13 +4,13 @@
         <div class="panel-heading" data-bind="text: ko.i18n('cc.fa.description', 'Description')"></div>
         <div data-bind="css: classes({ element: 'descr-panel-body' })">
             <!-- ko if: $component.canEdit() -->
-            <multi-select
+            <multi-select aria-label="Select domain"
                     data-bind="css: classes('domain-selector')"
                     params="options: $component.domains, selectedValue: $component.data() && $component.data().domain, multiple: false"
             ></multi-select>
             <!-- /ko -->
             <!-- ko if: !$component.canEdit() -->
-            <div data-bind="css: classes('read-only-domain-info')">
+            <div data-bind="css: classes('read-only-domain-info')" aria-label="Selected domain">
                 <b data-bind="text: ko.i18n('cc.fa.domain', 'Domain:')"></b> <span data-bind="text: ($component.domains().find(o => o.value === $component.data().domain()) || {}).label"></span>
             </div>
             <!-- /ko -->
@@ -18,7 +18,7 @@
                     css: classes({ element: 'descr', extra: 'form-control' }),
 					attr: { disabled: $component.canEdit() ? null : true }
                     textInput: $component.data().descr
-                "></textarea>
+                " aria-label="Feature analysis description"></textarea>
         </div>
     </div>
 
@@ -77,7 +77,7 @@
                 <div data-bind="css: classes({extra: 'panel panel-primary'})">
                     <div data-bind="css: classes({ extra: 'panel-heading' }), text: ko.i18n('cc.fa.analysisType', 'Analysis type:')"></div>
                     <div data-bind="css: classes('stat-type-selector')">
-                        <multi-select
+                        <multi-select aria-label="Select analysis type"
                                 data-bind="css: classes()"
                                 params="options: $component.statTypeOptions,  disable: !$component.canEdit(),
                                 selectedValue: $component.data().statType, multiple: false"></multi-select>
