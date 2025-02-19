@@ -17,7 +17,12 @@ define([
     }
 
     function isPermittedGetCC(id) {
-        return AuthAPI.isPermitted(`cohort-characterization:${id}:get`);
+        if (!id || id <= 0) {
+            // id == 0 indicates a new characterization, so user should have general "post" access:
+            return AuthAPI.isPermitted(`cohort-characterization:post`);
+        } else {
+            return AuthAPI.isPermitted(`cohort-characterization:${id}:get`);
+        }
     }
 
     function isPermittedUpdateCC(id) {
