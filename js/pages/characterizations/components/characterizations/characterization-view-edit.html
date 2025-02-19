@@ -18,7 +18,9 @@
                 </button>
                 <button type="button" class="btn btn-primary" data-bind="click: closeCharacterization, css: {disabled: isProcessing() }, title: ko.i18n('common.close', 'Close')"><i class="fa fa-times"></i></button>
                 <!-- ko ifnot: isNewEntity() -->
+                <!-- Hide this not-so-useful part and make the page more 508 compliant:
                 <button type="button" class="btn btn-primary" data-bind="click: () => isTagsModalShown(!isTagsModalShown()), visible: isEditPermitted() && !previewVersion(), css: { disabled: isProcessing() }, title: ko.i18n('common.tags', 'Tags')"><i class="fa fa-tags"></i></button>
+                -->
                 <button type="button" class="btn btn-primary" data-bind="visible: !previewVersion(), click: copyCc, css: {disabled: !canCopy() || isProcessing() }, title: , title: ko.i18n('common.createACopy', 'Create a copy')"><i class="fa fa-copy"></i></button>
 
 		<!-- ko if: enablePermissionManagement -->

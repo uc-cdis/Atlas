@@ -4,14 +4,17 @@
         autoWidth: false,
         reference:data,
         columns: columns,
-        options: options,
-        buttons: buttons,
+        options: {
+            paging: false,  // Disable pagination
+            searching: true,  // Keep the search bar
+        },
+        buttons: [], // Ensure no buttons are displayed
         dom: tableDom,
         rowClick: !multiChoice ? rowClick : null,
         scrollY: scrollY,
         selectedData: filteredData,
         dtApi: dtApi,
-        pageLength: pageLength,
+        // pageLength: pageLength,
         lengthMenu: lengthMenu,
         language: ko.i18n('datatable.language')
     ">
