@@ -2,9 +2,13 @@
 		<div data-bind="css: classes()">
 				<faceted-datatable params="{
 						columns: warningsColumns,
-						options: warningsOptions,
+						options: {
+							paging: false,  // Disable pagination
+							searching: false,  // Disable the search bar...less is more
+						},
+						buttons: [], // Ensure no buttons are displayed
 						reference: warnings,
-						pageLength: tableOptions.pageLength,
+						// pageLength: tableOptions.pageLength,
 						lengthMenu: tableOptions.lengthMenu,
 						order: [],
 						language: ko.i18n('datatable.language')

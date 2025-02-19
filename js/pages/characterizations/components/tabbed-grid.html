@@ -25,9 +25,13 @@
     <faceted-datatable params="{
         order: $component.order,
         columns: $component.gridColumns,
-        options: $component.gridOptions,
+        options: {
+            paging: false,  // Disable pagination
+            searching: true,  // Keep the search bar
+        },
+        buttons: [], // Ensure no buttons are displayed
         reference: $component.data,
-        pageLength: $component.tableOptions.pageLength,
+        // pageLength: $component.tableOptions.pageLength,
         lengthMenu: $component.tableOptions.lengthMenu,
         language: $component.datatableLanguage
     }"></faceted-datatable>

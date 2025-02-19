@@ -16,9 +16,11 @@
 		dataTable:{
 			data: $component.data,
 			options: {
+				paging: false,  // Disable pagination
+            	searching: false,  // Disable the search bar
 				columns: $component.columns,
-				pageLength: $component.tableOptions.pageLength,
-				lengthMenu: $component.tableOptions.lengthMenu,
+				// pageLength: $component.tableOptions.pageLength,
+				// lengthMenu: $component.tableOptions.lengthMenu,
 				language: $component.language
 			}
 		}
