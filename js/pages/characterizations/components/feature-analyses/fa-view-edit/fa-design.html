@@ -26,7 +26,7 @@
         <div class="panel-heading" data-bind="text: ko.i18n('cc.fa.design', 'Design')"></div>
         <div data-bind="css: classes({ element: 'design-panel-body' })">
             <div data-bind="css: classes('type-selector')">
-                <ul data-bind="css: classes({ element: 'nav', extra: 'nav nav-pills' })">
+                <ul role="tablist" data-bind="css: classes({ element: 'nav', extra: 'nav nav-pills' })">
                     <!-- ko if: $component.isPresetFeatureTypeAvailable-->
                     <li role="presentation"
                         data-bind="
@@ -34,7 +34,7 @@
                             css: classes({ element: 'nav-pill', extra: $component.data().type() === $component.featureTypes.PRESET ? 'active' : null }),
                             click: setType.bind(null, $component.featureTypes.PRESET)
                         ">
-                        <a data-bind="text: ko.i18n('cc.fa.preset', 'Preset')"></a>
+                        <a role="tab" data-bind="text: ko.i18n('cc.fa.preset', 'Preset')"></a>
                     </li>
                     <!-- /ko -->
                     <!-- ko if: !$component.isPresetFeatureTypeAvailable && !$component.featureId() -->
@@ -46,7 +46,7 @@
                             css: classes({ element: 'nav-pill', extra: $component.data().type() === $component.featureTypes.CRITERIA_SET ? 'active' : null }),
                             click: setType.bind(null, $component.featureTypes.CRITERIA_SET)
                         ">
-                        <a data-bind="text: ko.i18n('cc.fa.criteria', 'Criteria')"></a>
+                        <a role="tab" data-bind="text: ko.i18n('cc.fa.criteria', 'Criteria')"></a>
                     </li>
                     <li role="presentation"
                         data-bind="
@@ -54,7 +54,7 @@
                             css: classes({ element: 'nav-pill', extra: $component.data().type() === $component.featureTypes.CUSTOM_FE ? 'active' : null }),
                             click: setType.bind(null, $component.featureTypes.CUSTOM_FE)
                         ">
-                        <a data-bind="text: ko.i18n('cc.fa.custom', 'Custom')"></a>
+                        <a role="tab" data-bind="text: ko.i18n('cc.fa.custom', 'Custom')"></a>
                     </li>
                 </ul>
             </div>
@@ -111,7 +111,7 @@
                         <input
                                 data-bind="css: $component.classes({ element: 'criteria-name', extra: 'form-control' }), textInput: $data.name, placeholder: ko.i18n('cc.fa.criteriaName', 'Criteria name')"
                         />
-                        <button
+                        <button title="Delete criteria entry"
                                 type="button"
                                 data-bind="css: $component.classes({ element: 'criteria-delete', extra: 'btn btn-sm btn-danger' }), click: () => $component.removeCriteria($index())"
                         ><i class="fa fa-trash-alt"></i></button>
