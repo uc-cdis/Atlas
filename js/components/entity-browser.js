@@ -44,6 +44,7 @@ define([
             this.columns = !!this.multiChoice || this.showCheckboxes
                 ? [
                     {
+                        title: ko.i18n('columns.selected', 'Selected'),
                         data: 'selected',
                         width: '20px',
                         render: () => renderers.renderCheckbox('selected'),
