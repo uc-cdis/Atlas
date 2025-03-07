@@ -48,7 +48,25 @@
                             css: classes({ element: 'access-table', extra: ['table', 'table-bordered', 'table-hover'] }),
                             dataTable:{
                                 data: writeAccessList,
-                                options: {columns: writeAccessColumns, language: ko.i18n('datatable.language')},
+                                options: {
+                                    columns: writeAccessColumns,
+                                    language: ko.i18n('datatable.language'),
+                                    initComplete: function(settings, json) {
+                                        document.querySelectorAll('.dataTables_paginate .paginate_button').forEach(button => {
+                                            if (button.hasAttribute('aria-role')) {
+                                                button.removeAttribute('aria-role');
+                                            }
+                                        });
+                                    },
+                                    drawCallback: function(settings) {
+                                        // remove invalid aria:
+                                        document.querySelectorAll('.dataTables_paginate .paginate_button').forEach(button => {
+                                            if (button.hasAttribute('aria-role')) {
+                                                button.removeAttribute('aria-role');
+                                            }
+                                        });
+                                    }
+                                }
                             }
                         "/>
                     </div>
@@ -80,7 +98,25 @@
                             css: classes({ element: 'access-table', extra: ['table', 'table-bordered', 'table-hover'] }),
                             dataTable:{
                                 data: readAccessList,
-                                options: {columns: readAccessColumns, language: ko.i18n('datatable.language')},
+                                options: {
+                                    columns: readAccessColumns,
+                                    language: ko.i18n('datatable.language'),
+                                    initComplete: function(settings, json) {
+                                        document.querySelectorAll('.dataTables_paginate .paginate_button').forEach(button => {
+                                            if (button.hasAttribute('aria-role')) {
+                                                button.removeAttribute('aria-role');
+                                            }
+                                        });
+                                    },
+                                    drawCallback: function(settings) {
+                                        // remove invalid aria:
+                                        document.querySelectorAll('.dataTables_paginate .paginate_button').forEach(button => {
+                                            if (button.hasAttribute('aria-role')) {
+                                                button.removeAttribute('aria-role');
+                                            }
+                                        });
+                                    }
+                                }
                             }
                         "/>
                     </div>
