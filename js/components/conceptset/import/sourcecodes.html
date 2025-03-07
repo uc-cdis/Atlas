@@ -1,6 +1,6 @@
 <div>
     <div class="heading"><span data-bind="text: ko.i18n('components.conceptSet.import.sourceCodes.enterSourceCodes', 'Enter Source Codes')"></span> (<a class="linkish" data-bind="click: function() { sourcecodes(''); }, text: ko.i18n('components.conceptSet.clickToClear', 'click to clear')"></a>)</div>
-    <textarea class="form-control" rows="5" data-bind="textInput: sourcecodes"></textarea>
+    <textarea aria-label="Text area for source codes" class="form-control" rows="5" data-bind="textInput: sourcecodes"></textarea>
     <div class="clear"></div>
     <button data-bind="click: loadConcepts, text: ko.i18n('components.conceptSet.import.sourceCodes.searchConcepts', 'Search concepts')" class="btn btn-sm btn-primary"></button>
     <div class="clear"></div>

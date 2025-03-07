@@ -18,7 +18,7 @@
                     <strong data-bind="text: ko.i18n('common.copiedToClipboard', 'Copied To Clipboard!')"></strong>
                 </span>
             </div>
-            <textarea data-bind="attr: {'id': 'exportJSON' + $component.uniqueId}, css: classes('json-box'), textInput: $component.exportJSON"></textarea>
+            <textarea aria-label="Text area for export" data-bind="attr: {'id': 'exportJSON' + $component.uniqueId}, css: classes('json-box'), textInput: $component.exportJSON"></textarea>
         <!-- /ko -->
         <!-- ko if: !canExport() -->
             <div data-bind="css: classes('error-message'), text: $component.errorMessage()"></div>
