@@ -7,7 +7,7 @@
             			attr: { 'disabled': !$component.isJSONValid() },
             			text: ko.i18n('components.import.button', 'Import'),
                         click: doImport"></button>
-            <textarea data-bind="css: classes('json-box'), textInput: $component.importJSON"></textarea>
+            <textarea aria-label="Text area for import" data-bind="css: classes('json-box'), textInput: $component.importJSON"></textarea>
         <!-- /ko -->
         <!-- ko if: !isImportPermitted() -->
             <span data-bind="text: ko.i18n('components.import.denied', 'Import is not permitted')"></span>
