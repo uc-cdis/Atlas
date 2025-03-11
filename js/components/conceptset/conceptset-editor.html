@@ -1,23 +1,19 @@
 <table class="conceptSetTable stripe compact hover" cellspacing="0" width="100%" data-bind="dataTable:{
             data: conceptSetItems(),
+			buttons: [], // Ensure no buttons are displayed
             options: {
 							dom: 'Clfiprt',
-							colVis: {
-								buttonText: ko.i18n('datatable.language.buttons.changeColumns', 'Change Columns'),
-								align: 'right',
-								overlayFade: 0,
-								showAll: ko.i18n('datatable.language.buttons.showAllColumns', 'Show All Columns'),
-								restore: ko.i18n('datatable.language.buttons.resetColumns', 'Reset Columns')
-							},
 							rowCallback: $component.commonUtils.contextSensitiveLinkColor,
 							lengthMenu: $component.tableOptions.lengthMenu,
-							pageLength: $component.tableOptions.pageLength,
+							// pageLength: $component.tableOptions.pageLength,
 							orderClasses: false,
 							deferRender: true,
 							autoWidth: false,
 							order: [[3, 'desc']],
 							language: ko.i18n('datatable.language'),
 							columns: columns,
+							paging: false,  // Disable pagination
+							searching: true,  // Keep the search bar
            }
 				}">
 	<thead>

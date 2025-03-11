@@ -9,9 +9,12 @@
           dataTable: {
             data: filteredExecutionGroups,
             options: {
+              searching: false, // No need for search...less is more
+              paging: false,  // Disable pagination
+              buttons: [], // Ensure no buttons are displayed
               columns: sourcesColumn,
               order: [[ 0, 'asc' ]],
-              pageLength: tableOptions.pageLength,
+              // pageLength: tableOptions.pageLength,
               language: ko.i18n('datatable.language')
             }
           }
@@ -109,9 +112,11 @@
           dataTable: {
             data: submissions,
             options: {
+              paging: false,  // Disable pagination
+              buttons: [], // Ensure no buttons are displayed
               columns: execColumns,
               order: [[ 0, 'desc' ]],
-              pageLength: $component.tableOptions.pageLength,
+              // pageLength: $component.tableOptions.pageLength,
               language: ko.i18n('datatable.language')
             }
           }
