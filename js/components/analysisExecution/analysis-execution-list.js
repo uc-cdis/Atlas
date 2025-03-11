@@ -35,6 +35,7 @@ define([
 ) {
   class AnalysisExecutionList extends Component {
     constructor({
+      characterizationId,
       analysisId,
       design,
       ExecutionService,
@@ -53,6 +54,7 @@ define([
     }) {
       super();
       this.analysisId = analysisId;
+      this.characterizationId = characterizationId;
       this.analysisId.subscribe((id) => {
         if (id) {
           this.loadData();
@@ -150,7 +152,7 @@ define([
       this.execColumns = tableColumns.map(col => execColumnsMap[col]);
 
       this.isViewGenerationsPermitted =  ko.computed(
-        () => (this.analysisId() ? this.PermissionService.isPermittedListGenerations(this.analysisId()) : true)
+        () => (this.characterizationId() ? this.PermissionService.isPermittedListGenerations(this.characterizationId()) : true)
       );
 
       this.isViewGenerationsPermitted && this.startPolling();
@@ -233,7 +235,7 @@ define([
     async loadData({ silently = false } = {}) {
       !silently && this.loading(true);
 
-      const analysisId = this.analysisId();
+      const analysisId = this.characterizationId();
 
       try {
         const allSources = await SourceService.loadSourceList();
@@ -272,7 +274,7 @@ define([
       try {
         this.executionDesign(null);
         this.isExecutionDesignShown(true);
-        const data = await this.ExecutionService.loadExportDesignByGeneration(executionId);
+        const data = await this.ExecutionService.loadExportDesignByGeneration(this.characterizationId(), executionId);
         this.executionDesign(data);
       } catch (err) {
         console.error(err);
@@ -298,15 +300,15 @@ define([
     toggleSection(sourceId) {
       if (parseInt(this.selectedSourceId()) === sourceId) {
         this.selectedSourceId(null);
-        CommonUtils.routeTo(`${this.resultsPathPrefix}${this.analysisId()}/executions`);
+        CommonUtils.routeTo(`${this.resultsPathPrefix}${this.characterizationId()}/executions`);
       } else {
         this.selectedSourceId(sourceId);
-        CommonUtils.routeTo(`${this.resultsPathPrefix}${this.analysisId()}/executions/${sourceId}`);
+        CommonUtils.routeTo(`${this.resultsPathPrefix}${this.characterizationId()}/executions/${sourceId}`);
       }
     }
 
     isGenerationPermitted(sourceKey) {
-      const isPermitted = this.PermissionService.isPermittedGenerate(this.analysisId(), sourceKey);
+      const isPermitted = this.PermissionService.isPermittedGenerate(this.characterizationId(), sourceKey);
       if (this.extraExecutionPermissions) {
         return isPermitted && this.extraExecutionPermissions();
       }
@@ -314,7 +316,7 @@ define([
     }
 
     isResultsViewPermitted(sourceKey) {
-      return this.PermissionService.isPermittedResults(sourceKey);
+      return this.PermissionService.isPermittedResults(this.characterizationId(), sourceKey);
     }
 
     getDisableReason(sourceKey) {
@@ -333,7 +335,7 @@ define([
           await ExecutionUtils.StartExecution(executionGroup);
         }
         executionGroup.status(this.executionStatuses.PENDING);
-        const data = await this.ExecutionService.generate(this.analysisId(), sourceKey);
+        const data = await this.ExecutionService.generate(this.characterizationId(), sourceKey);
         if (data) {
           JobDetailsService.createJob(data);
           this.loadData({silently: true});
@@ -347,7 +349,7 @@ define([
     cancelGenerate(sourceKey) {
       this.stopping({...this.stopping(), [sourceKey]: true});
       if (confirm(ko.i18n('components.analysisExecution.stopGenerationConfirmation', 'Do you want to stop generation?')())) {
-        this.ExecutionService.cancelGeneration(this.analysisId(), sourceKey);
+        this.ExecutionService.cancelGeneration(this.characterizationId(), sourceKey);
       } else {
         this.stopping({...this.stopping(), [sourceKey]: false});
       }
@@ -387,7 +389,7 @@ define([
     }
 
     goToResults(executionId) {
-      CommonUtils.routeTo(`${this.resultsPathPrefix}${this.analysisId()}/results/${executionId}`);
+      CommonUtils.routeTo(`${this.resultsPathPrefix}${this.characterizationId()}/results/${executionId}`);
     }
 
     findLatestSubmission(sourceKey) {
