@@ -1,6 +1,6 @@
 <div>
 	<div class="heading"><span data-bind="text: ko.i18n('components.conceptSet.conceptSetExpressionJSON', 'Concept Set Expression JSON')"></span> (<a class="linkish" data-bind="click: function() { importConceptSetJson(''); }, text: ko.i18n('components.conceptSet.clickToClear', 'click to clear')"></a>)</div>
-	<textarea class="form-control" rows="5" data-bind="value: importConceptSetJson"></textarea>
+	<textarea aria-label="Text area for concept set expression JSON" class="form-control" rows="5" data-bind="value: importConceptSetJson"></textarea>
 	<div style="position: absolute" data-bind="if: errorMessage().length > 0"><span data-bind="text: errorMessage"></span></div>
 	<div class="clear"></div>
 	<div class="pull-right">
