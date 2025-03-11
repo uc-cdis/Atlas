@@ -173,7 +173,7 @@ define([
           this.executionDesign(null);
           this.isExecutionDesignShown(true);
           CharacterizationService
-            .loadExportDesignByGeneration(this.executionId())
+            .loadExportDesignByGeneration(this.characterizationId(), this.executionId())
             .then(res => {
               this.executionDesign(res);
               this.loading(false);
@@ -182,7 +182,7 @@ define([
 
         exploreByFeature({covariateName, analysisId, covariateId, cohorts, ...o}, index) {
           const {cohortId, cohortName} = cohorts[index];
-          this.explorePrevalence({executionId: this.executionId(), analysisId, cohortId, covariateId, cohortName});
+          this.explorePrevalence({characterizationId: this.characterizationId(), executionId: this.executionId(), analysisId, cohortId, covariateId, cohortName});
           this.explorePrevalenceTitle(ko.i18n('cc.viewEdit.results.exploring', 'Exploring')() + ' ' + covariateName);
           this.isExplorePrevalenceShown(true);
         }
@@ -247,9 +247,9 @@ define([
             ] = await Promise.all([
                     SourceService.loadSourceList(),
                     FeatureAnalysisService.loadFeatureAnalysisDomains(),
-                    CharacterizationService.loadExportDesignByGeneration(this.executionId()),
-                    CharacterizationService.loadCharacterizationExecution(this.executionId()),
-                    CharacterizationService.loadCharacterizationResultsCount(this.executionId()),
+                    CharacterizationService.loadExportDesignByGeneration(this.characterizationId(), this.executionId()),
+                    CharacterizationService.loadCharacterizationExecution(this.characterizationId(), this.executionId()),
+                    CharacterizationService.loadCharacterizationResultsCount(this.characterizationId(), this.executionId()),
             ])
             this.design(design);
             this.domains(domains);
@@ -288,7 +288,7 @@ define([
             };
 
             Promise.all([
-                CharacterizationService.loadCharacterizationResults(this.executionId(), params)
+                CharacterizationService.loadCharacterizationResults(this.characterizationId(), this.executionId(), params)
             ]).then(([
                 generationResults
             ]) => {
@@ -344,7 +344,7 @@ define([
                     thresholdValuePct: this.thresholdValuePct() / 100,
                     showEmptyResults: !!this.showEmptyResults(),
                 };
-                await FileService.loadZip(`${config.api.url}cohort-characterization/generation/${this.executionId()}/result/export`,
+                await FileService.loadZip(`${config.api.url}cohort-characterization/${this.characterizationId()}/generation/${this.executionId()}/result/export`,
                     `characterization_${this.characterizationId()}_execution_${this.executionId()}_reports.zip`, 'POST', params);
 
             }catch (e) {
@@ -367,7 +367,7 @@ define([
                     thresholdValuePct: this.thresholdValuePct() / 100,
                     showEmptyResults: !!this.showEmptyResults(),
                 };
-                await FileService.loadZip(`${config.api.url}cohort-characterization/generation/${this.executionId()}/result/export`,
+                await FileService.loadZip(`${config.api.url}cohort-characterization/${this.characterizationId()}/generation/${this.executionId()}/result/export`,
                     `characterization_${this.characterizationId()}_execution_${this.executionId()}_report.zip`, 'POST', params);
 
             }catch (e) {

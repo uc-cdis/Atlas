@@ -57,9 +57,9 @@ define([
 			this.loadData(this.explore);
 		}
 
-		loadData({executionId, analysisId, cohortId, covariateId}) {
+		loadData({characterizationId, executionId, analysisId, cohortId, covariateId}) {
 			this.loading(true);
-			return CharacterizationService.getPrevalenceStatsByGeneration(executionId, analysisId, cohortId, covariateId)
+			return CharacterizationService.getPrevalenceStatsByGeneration(characterizationId, executionId, analysisId, cohortId, covariateId)
 				.then(res => this.data(res.map(v => ({...v, executionId}))))
 				.finally(() => this.loading(false));
 		}
