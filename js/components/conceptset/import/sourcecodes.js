@@ -33,7 +33,7 @@ define([
 			this.doImport = this.doImport.bind(this);
 
 			this.searchColumns = [{
-				title: '',
+				title: 'Select',
 				render: (s, p, d) => {
 					return '<span data-bind="click: function(d) { d.isSelected(!d.isSelected()) } ,css: { selected: isSelected} " class="fa fa-check"></span>';
 				},

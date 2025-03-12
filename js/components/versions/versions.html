@@ -4,9 +4,13 @@
 				<faceted-datatable params="{
 						order: [2, 'desc'],
 						columns: columns,
-						options: options,
+						options: {
+							paging: false,  // Disable pagination
+							searching: true,  // Keep the search bar
+						},
+						buttons: [], // Ensure no buttons are displayed
 						reference: data,
-						pageLength: tableOptions.pageLength,
+						// pageLength: tableOptions.pageLength,
 						lengthMenu: tableOptions.lengthMenu,
 						language: ko.i18n('datatable.language')
 				}"></faceted-datatable>

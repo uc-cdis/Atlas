@@ -38,7 +38,7 @@ define([
 			this.isLoading =  ko.observable(false);
 
 			this.relatedConceptsColumns = [{
-				title: '',
+				title: 'Select',
 				render: () => renderers.renderCheckbox('isSelected'),
 				orderable: false,
 				searchable: false,

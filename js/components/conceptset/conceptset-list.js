@@ -62,6 +62,8 @@ define([
 			this.options = {
 				deferRender: true,
 				orderClasses: false,
+				paging: false,  // Disable pagination
+				searching: true,  // Keep the search bar
 				autoWidth: false,
 				order: [ 1, 'asc' ],
 				...commonUtils.getTableOptions('S'),

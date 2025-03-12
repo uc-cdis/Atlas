@@ -21,7 +21,25 @@
 					attr: { id: $component.dataTableId },
 					dataTable:{
 							data: $component.tableData,
-							options: $component.options,
+							options: Object.assign({}, $component.options, {
+								createdRow: function(row, rowData, rowIndex) {
+									row.setAttribute('tabindex', '0'); // Make row focusable
+									row.addEventListener('keydown', function(event) {
+										if (event.key === 'Enter' || event.key === ' ') {
+											event.preventDefault();
+											// If first cell contains a checkbox, toggle it
+											let firstCell = row.cells[0];
+											let checkbox = firstCell ? firstCell.querySelector('span') : null; // not a real checkbox...but a span... TODO - maybe filter on style as well...?
+											if (checkbox) {
+												// checkbox.checked = !checkbox.checked;
+												checkbox.click(); // Trigger the click event
+											} else {
+												$component.rowClick(rowData); // Otherwise, trigger row click
+											}
+										}
+									});
+								}
+							}),
 							scrollOptions: $component.scrollOptions,
 							onRowClick: $component.rowClick,
 							api: dtApi

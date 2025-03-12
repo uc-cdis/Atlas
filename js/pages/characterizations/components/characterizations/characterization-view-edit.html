@@ -9,7 +9,7 @@
     <!-- /ko -->
     <div class="asset-heading">
         <div class="input-group">
-            <input type="text" class="form-control" data-bind="css: {emptyInput: !isNameFilled()}, attr: { disabled: isEditPermitted() ? null : true }, textInput: design().name" />
+            <input aria-label="Characterization name" type="text" class="form-control" data-bind="css: {emptyInput: !isNameFilled()}, attr: { disabled: isEditPermitted() ? null : true }, textInput: design().name" />
             <div class="input-group-btn">
                 <button type="button" class="btn btn-success" data-bind="click: save, css: {disabled:!isSavePermitted() || isProcessing() }, attr: {title: !previewVersion() ? ko.i18n('common.save', 'Save') : ko.i18n('common.saveAsCurrentVersion', 'Save as current version')}"><i class="fa fa-save"></i></button>
                 <button class="btn btn-primary"
@@ -18,7 +18,9 @@
                 </button>
                 <button type="button" class="btn btn-primary" data-bind="click: closeCharacterization, css: {disabled: isProcessing() }, title: ko.i18n('common.close', 'Close')"><i class="fa fa-times"></i></button>
                 <!-- ko ifnot: isNewEntity() -->
+                <!-- Hide this not-so-useful part and make the page more 508 compliant:
                 <button type="button" class="btn btn-primary" data-bind="click: () => isTagsModalShown(!isTagsModalShown()), visible: isEditPermitted() && !previewVersion(), css: { disabled: isProcessing() }, title: ko.i18n('common.tags', 'Tags')"><i class="fa fa-tags"></i></button>
+                -->
                 <button type="button" class="btn btn-primary" data-bind="visible: !previewVersion(), click: copyCc, css: {disabled: !canCopy() || isProcessing() }, title: , title: ko.i18n('common.createACopy', 'Create a copy')"><i class="fa fa-copy"></i></button>
 
 		<!-- ko if: enablePermissionManagement -->
@@ -27,7 +29,7 @@
                 </button>
 		<!-- /ko -->
 
-		<button type="button" class="btn btn-danger"  data-bind="visible: !previewVersion(), click: deleteCc, css: {disabled: !$component.isDeletePermitted() || isProcessing() }"><i class="fa fa-trash-alt"></i></button>
+		<button type="button" class="btn btn-danger" data-bind="title: ko.i18n('common.delete', 'Delete'), visible: !previewVersion(), click: deleteCc, css: {disabled: !$component.isDeletePermitted() || isProcessing() }"><i class="fa fa-trash-alt"></i></button>
                 <!-- /ko -->
             </div>
         </div>
