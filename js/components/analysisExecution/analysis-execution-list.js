@@ -167,11 +167,9 @@ define([
     async loadData({ silently = false } = {}) {
       !silently && this.loading(true);
 
-      const analysisId = this.characterizationId();
-
       try {
         const allSources = await SourceService.loadSourceList();
-        const executionList = await this.ExecutionService.listExecutions(analysisId);
+        const executionList = await this.ExecutionService.listExecutions(this.characterizationId());
         let sourceList = allSources.filter(({ daimons = [] }) => {
           const daimonTypes = daimons.map(({ daimonType }) => daimonType);
           return ['CDM', 'Results'].every(daimonType => daimonTypes.includes(daimonType));
