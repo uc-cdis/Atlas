@@ -56,27 +56,27 @@ define([
             .then(res => executionUtils.generateVersionTags(res.data));
     }
 
-    function loadCharacterizationExecution(id) {
+    function loadCharacterizationExecution(ccId, id) {
         return httpService
-            .doGet(config.webAPIRoot + 'cohort-characterization/generation/' + id)
+            .doGet(config.webAPIRoot + 'cohort-characterization/' + ccId + '/generation/' + id)
             .then(res => res.data);
     }
 
-    function loadCharacterizationResults(generationId, params) {
+    function loadCharacterizationResults(ccId, generationId, params) {
         return httpService
-            .doPost(config.webAPIRoot + 'cohort-characterization/generation/' + generationId + '/result', params)
+            .doPost(config.webAPIRoot + 'cohort-characterization/' + ccId + '/generation/' + generationId + '/result', params)
             .then(res => res.data);
     }
 
-    function loadCharacterizationResultsCount(generationId) {
+    function loadCharacterizationResultsCount(ccId, generationId) {
         return httpService
-            .doGet(config.webAPIRoot + 'cohort-characterization/generation/' + generationId + '/result/count')
+            .doGet(config.webAPIRoot + 'cohort-characterization/' + ccId + '/generation/' + generationId + '/result/count')
             .then(res => res.data);
     }
 
-    function loadExportDesignByGeneration(generationId) {
+    function loadExportDesignByGeneration(ccId, generationId) {
         return httpService
-            .doGet(config.webAPIRoot + 'cohort-characterization/generation/' + generationId + '/design')
+            .doGet(config.webAPIRoot + 'cohort-characterization/' + ccId + '/generation/' + generationId + '/design')
             .then(res => res.data);
     }
 
@@ -92,9 +92,9 @@ define([
             .then(res => res.data));
     }
 
-    function getPrevalenceStatsByGeneration(generationId, analysisId, cohortId, covariateId) {
+    function getPrevalenceStatsByGeneration(ccId, generationId, analysisId, cohortId, covariateId) {
         return httpService
-          .doGet(config.webAPIRoot + `cohort-characterization/generation/${generationId}/explore/prevalence/${analysisId}/${cohortId}/${covariateId}`)
+          .doGet(config.webAPIRoot + `cohort-characterization/${ccId}/generation/${generationId}/explore/prevalence/${analysisId}/${cohortId}/${covariateId}`)
           .then(res => res.data);
     }
 

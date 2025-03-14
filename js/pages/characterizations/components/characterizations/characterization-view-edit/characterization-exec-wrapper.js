@@ -43,7 +43,8 @@ define([
                 tableColumns: ['Date', 'Design', 'Status', 'Duration', 'Results'],
                 runExecutionInParallel: false,
                 resultsPathPrefix: '/cc/characterizations/',
-                analysisId: params.characterizationId,
+                analysisId: params.characterizationId, // why??
+                characterizationId: params.characterizationId,
                 ExecutionService: CharacterizationService,
                 PermissionService,
                 PollService: JobPollService,

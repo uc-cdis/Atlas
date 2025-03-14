@@ -41,8 +41,8 @@ define([
         return AuthAPI.isPermitted(`cohort-characterization:${id}:generation:${sourceKey}:post`);
     }
 
-    function isPermittedResults(sourceKey) {
-        return (AuthAPI.isPermitted(`cohort-characterization:generation:*:result:post`))
+    function isPermittedResults(id, sourceKey) {
+        return (AuthAPI.isPermitted(`cohort-characterization:${id}:generation:*:result:post`))
             && AuthAPI.isPermitted(`source:${sourceKey}:access`);
     }
 
