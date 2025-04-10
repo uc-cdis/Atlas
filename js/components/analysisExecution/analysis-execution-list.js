@@ -152,7 +152,7 @@ define([
       this.execColumns = tableColumns.map(col => execColumnsMap[col]);
 
       this.isViewGenerationsPermitted =  ko.computed(
-        () => (this.characterizationId() ? this.PermissionService.isPermittedListGenerations(this.characterizationId()) : true)
+        () => (this.analysisId() ? this.PermissionService.isPermittedListGenerations(this.analysisId()) : true)
       );
 
       this.isViewGenerationsPermitted && this.startPolling();
@@ -237,7 +237,7 @@ define([
 
       try {
         const allSources = await SourceService.loadSourceList();
-        const executionList = await this.ExecutionService.listExecutions(this.characterizationId());
+        const executionList = await this.ExecutionService.listExecutions(this.analysisId());
         let sourceList = allSources.filter(({ daimons = [] }) => {
           const daimonTypes = daimons.map(({ daimonType }) => daimonType);
           return ['CDM', 'Results'].every(daimonType => daimonTypes.includes(daimonType));
@@ -272,7 +272,7 @@ define([
       try {
         this.executionDesign(null);
         this.isExecutionDesignShown(true);
-        const data = await this.ExecutionService.loadExportDesignByGeneration(this.characterizationId(), executionId);
+        const data = await this.ExecutionService.loadExportDesignByGeneration(this.analysisId(), executionId);
         this.executionDesign(data);
       } catch (err) {
         console.error(err);
@@ -298,15 +298,15 @@ define([
     toggleSection(sourceId) {
       if (parseInt(this.selectedSourceId()) === sourceId) {
         this.selectedSourceId(null);
-        CommonUtils.routeTo(`${this.resultsPathPrefix}${this.characterizationId()}/executions`);
+        CommonUtils.routeTo(`${this.resultsPathPrefix}${this.analysisId()}/executions`);
       } else {
         this.selectedSourceId(sourceId);
-        CommonUtils.routeTo(`${this.resultsPathPrefix}${this.characterizationId()}/executions/${sourceId}`);
+        CommonUtils.routeTo(`${this.resultsPathPrefix}${this.analysisId()}/executions/${sourceId}`);
       }
     }
 
     isGenerationPermitted(sourceKey) {
-      const isPermitted = this.PermissionService.isPermittedGenerate(this.characterizationId(), sourceKey);
+      const isPermitted = this.PermissionService.isPermittedGenerate(this.analysisId(), sourceKey);
       if (this.extraExecutionPermissions) {
         return isPermitted && this.extraExecutionPermissions();
       }
@@ -314,7 +314,7 @@ define([
     }
 
     isResultsViewPermitted(sourceKey) {
-      return this.PermissionService.isPermittedResults(this.characterizationId(), sourceKey);
+      return this.PermissionService.isPermittedResults(this.analysisId(), sourceKey);
     }
 
     getDisableReason(sourceKey) {
@@ -333,7 +333,7 @@ define([
           await ExecutionUtils.StartExecution(executionGroup);
         }
         executionGroup.status(this.executionStatuses.PENDING);
-        const data = await this.ExecutionService.generate(this.characterizationId(), sourceKey);
+        const data = await this.ExecutionService.generate(this.analysisId(), sourceKey);
         if (data) {
           JobDetailsService.createJob(data);
           this.loadData({silently: true});
@@ -347,7 +347,7 @@ define([
     cancelGenerate(sourceKey) {
       this.stopping({...this.stopping(), [sourceKey]: true});
       if (confirm(ko.i18n('components.analysisExecution.stopGenerationConfirmation', 'Do you want to stop generation?')())) {
-        this.ExecutionService.cancelGeneration(this.characterizationId(), sourceKey);
+        this.ExecutionService.cancelGeneration(this.analysisId(), sourceKey);
       } else {
         this.stopping({...this.stopping(), [sourceKey]: false});
       }
@@ -387,7 +387,7 @@ define([
     }
 
     goToResults(executionId) {
-      CommonUtils.routeTo(`${this.resultsPathPrefix}${this.characterizationId()}/results/${executionId}`);
+      CommonUtils.routeTo(`${this.resultsPathPrefix}${this.analysisId()}/results/${executionId}`);
     }
 
     findLatestSubmission(sourceKey) {
