@@ -107,6 +107,18 @@ define([
         },
       },
       {
+        ...constants.observationAttributes.addValueAsString,
+        selected: false,
+        action: function () {
+          if (self.Criteria.ValueAsString() == null)
+            self.Criteria.ValueAsString(
+              new Text({
+                Op: "contains",
+              })
+            );
+        },
+      },
+      {
         ...constants.observationAttributes.addValueAsConcept,
         selected: false,
         action: function () {
