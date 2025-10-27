@@ -541,8 +541,7 @@ define(function(require, exports) {
         token(null);
         subject(null);
         permissions(null);
-        alert("Warning: Permission is denied and session is cleared. This is possibly due to duplicate session. Please refresh page before signing in again to prevent errors.")
-        window.parent.location = document.referrer + "analysis/" ;
+        alert("Warning: Permission is denied and session is cleared. This is possibly due to duplicate session. \n\nRefreshing page.");
         window.top.location.reload();
     };
 
