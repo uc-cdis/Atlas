@@ -541,10 +541,8 @@ define(function(require, exports) {
         token(null);
         subject(null);
         permissions(null);
-        if (confirm("Warning: Permission is denied and session is cleared. This is possibly due to duplicate session. \n\nRefresh page?")) {
-            // User clicked "Yes"
-            window.top.location.reload();
-        }
+        alert("Warning: Permission is denied and session is cleared. This is possibly due to duplicate session. \n\nRefreshing page.");
+        window.top.location.reload();
     };
 
     const runAs = function(login, success, error) {
