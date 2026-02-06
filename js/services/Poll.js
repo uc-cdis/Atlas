@@ -1,4 +1,6 @@
-define(['knockout', 'visibilityjs'], (ko, Visibility) => {
+define(['knockout',
+  'services/AuthAPI',
+  'visibilityjs'], (ko, authApi, Visibility) => {
   const callbacks = new Map();
   const isPageForeground = ko.observable(Visibility.state() === "visible");
   Visibility.change((e, state) => {
@@ -55,9 +57,13 @@ define(['knockout', 'visibilityjs'], (ko, Visibility) => {
     }
 
     static pollImmediately() {
-      for (let [id, c] of callbacks) {
-        c.callback(c.args);
-      }
+      authApi.isAuthenticated.subscribe(isAuthenticated => {
+        if (isAuthenticated) {
+          for (let [id, c] of callbacks) {
+            c.callback(c.args);
+          }
+        }
+      });
     }
   }
 
