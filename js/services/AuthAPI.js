@@ -44,7 +44,7 @@ define(function(require, exports) {
     });
 
     var getAuthorizationHeader = function () {
-        if (!token()) {
+        if (!token() || tokenExpired()) {
             return null;
         }
         return TOKEN_HEADER + ' ' + token();
