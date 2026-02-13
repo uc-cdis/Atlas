@@ -171,6 +171,9 @@ define(function(require, exports) {
             resetAuthParams();
             break;
         case 403:
+            alert("Warning: permission denied OR possible a duplicate session on different teams. Please refresh/open app again to prevent errors.")
+            window.parent.location = config.parentUrl + "/resource-browser/" ;
+            window.top.location.reload();
             refreshToken();
             break;
         }
@@ -541,9 +544,6 @@ define(function(require, exports) {
         token(null);
         subject(null);
         permissions(null);
-        alert("Warning: possible a duplicate session. Please refresh/open app again to prevent errors.")
-        window.parent.location = config.parentUrl + "/resource-browser/" ;
-        window.top.location.reload();
     };
 
     const runAs = function(login, success, error) {
