@@ -542,7 +542,7 @@ define(function(require, exports) {
         subject(null);
         permissions(null);
         alert("Warning: possible a duplicate session. Please refresh/open app again to prevent errors.")
-        window.top.location.reload();
+        window.top.location.href = window.top.location.href; // force page refresh
     };
 
     const runAs = function(login, success, error) {
