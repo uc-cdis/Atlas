@@ -542,7 +542,6 @@ define(function(require, exports) {
         subject(null);
         permissions(null);
         alert("Warning: possible a duplicate session. Please refresh/open app again to prevent errors.")
-        window.parent.location = document.referrer + "resource-browser/" ;
         window.top.location.reload();
     };
 
