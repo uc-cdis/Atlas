@@ -11,7 +11,7 @@ define([
 		checkPermission() {
 			if (authApi.authProvider() === authApi.AUTH_PROVIDERS.IAP) {
 				return authApi.loadUserInfo();
-			} else if (appConfig.userAuthenticationEnabled && authApi.token() != null && this.timeToExpire() < appConfig.refreshTokenThreshold) {
+			} else if (appConfig.userAuthenticationEnabled && authApi.getAuthorizationHeader() && this.timeToExpire() < appConfig.refreshTokenThreshold) {
 				return authApi.refreshToken();
 			}
 			return Promise.resolve();
